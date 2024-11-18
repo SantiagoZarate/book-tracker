@@ -1,4 +1,4 @@
-import { BOOKS } from "@/app/(app)/data/books";
+import { BOOKS } from "@/app/data/books";
 import { BookService } from ".";
 
 export const booksService: BookService = {

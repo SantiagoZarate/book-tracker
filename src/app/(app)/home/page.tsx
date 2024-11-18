@@ -1,4 +1,4 @@
-import { BOOK_TRACKS } from "../data/book-tracks";
+import { BOOK_TRACKS } from "../../data/book-tracks";
 import { BookTrackItem } from "./BookTrackItem";
 
 export default function page() {

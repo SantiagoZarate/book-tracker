@@ -4,7 +4,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/(app)/components/ui/tooltip";
-import { BookTrack } from "../data/book-tracks";
+import { BookTrack } from "../../data/book-tracks";
 
 interface Props {
   book: BookTrack;
