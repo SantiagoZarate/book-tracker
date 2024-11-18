@@ -1,4 +1,5 @@
 import { Book, BOOKS } from "@/app/data/books";
+import { addBookAction } from "./action";
 
 const booksService = {
   async getBooks({ query }: { query?: string | null }): Promise<Book[]> {
@@ -29,8 +30,17 @@ export async function BooksList({ query }: Props) {
   return (
     <ul className="flex flex-col divide-y">
       {books.map((b) => (
-        <li key={b.title}>
-          <p>{b.title}</p>
+        <li key={b.title} className="">
+          <form
+            className="flex justify-between items-center px-2 py-1"
+            action={addBookAction}
+          >
+            <section>
+              <p>{b.title}</p>
+              <input hidden name="title" defaultValue={b.title} />
+            </section>
+            <button className="bg-accent">Add</button>
+          </form>
         </li>
       ))}
     </ul>
