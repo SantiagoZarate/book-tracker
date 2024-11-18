@@ -1,8 +1,4 @@
-export interface Book {
-  title: string;
-  author: string;
-  pages: number;
-}
+import { Book } from "@/types/book.type";
 
 export const BOOKS: Book[] = [
   {

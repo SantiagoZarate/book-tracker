@@ -3,7 +3,7 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
+} from "@/(app)/components/ui/tooltip";
 import { BookTrack } from "../data/book-tracks";
 
 interface Props {
