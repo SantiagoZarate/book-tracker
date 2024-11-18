@@ -17,7 +17,10 @@
     "react": "^18",
     "react-dom": "^18",
     "tailwind-merge": "^2.5.4",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "use-debounce": "10.0.4",
+    "zsa": "0.6.0",
+    "zsa-react": "0.2.3"
   },
   "devDependencies": {
     "@types/node": "^20",

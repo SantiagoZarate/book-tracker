@@ -3,7 +3,7 @@ import { BookTrackItem } from "./BookTrackItem";
 
 export default function page() {
   return (
-    <section className="mx-auto max-w-screen-xl pt-20 flex flex-col gap-12">
+    <section className="mx-auto max-w-screen-xl pt-20 px-12 flex flex-col gap-12">
       <header>
         <p className="text-7xl">Home page</p>
       </header>
