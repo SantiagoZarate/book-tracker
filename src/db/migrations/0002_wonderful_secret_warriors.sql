@@ -1,0 +1,1 @@
+ALTER TABLE `track` DROP COLUMN `pages_already_read`;
