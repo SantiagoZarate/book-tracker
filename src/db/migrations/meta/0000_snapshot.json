@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "fbe2c35e-2c26-41e0-9e44-b452b182e7b1",
+  "id": "4c14e8a6-2f2e-4d07-b12e-b51d67fe74b3",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "book": {
@@ -25,7 +25,7 @@
           "name": "author",
           "type": "text",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "autoincrement": false
         },
         "total_pages": {
@@ -55,7 +55,7 @@
         },
         "genre_name": {
           "name": "genre_name",
-          "type": "integer",
+          "type": "text",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false

@@ -84,7 +84,7 @@ export const booksToGenres = sqliteTable(
     bookId: text("book_id")
       .notNull()
       .references(() => bookSchema.id),
-    genreName: integer("genre_name")
+    genreName: text("genre_name")
       .notNull()
       .references(() => genreSchema.name),
   },

@@ -1,13 +1,13 @@
 CREATE TABLE `book` (
 	`id` text PRIMARY KEY NOT NULL,
 	`title` text NOT NULL,
-	`author` text,
+	`author` text NOT NULL,
 	`total_pages` integer DEFAULT 1 NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE `book_to_genre` (
 	`book_id` text NOT NULL,
-	`genre_name` integer NOT NULL,
+	`genre_name` text NOT NULL,
 	PRIMARY KEY(`book_id`, `genre_name`),
 	FOREIGN KEY (`book_id`) REFERENCES `book`(`id`) ON UPDATE no action ON DELETE no action,
 	FOREIGN KEY (`genre_name`) REFERENCES `genre`(`name`) ON UPDATE no action ON DELETE no action
