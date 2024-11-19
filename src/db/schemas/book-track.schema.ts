@@ -1,5 +1,10 @@
 import { relations, sql } from "drizzle-orm";
-import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import {
+  integer,
+  primaryKey,
+  sqliteTable,
+  text,
+} from "drizzle-orm/sqlite-core";
 import { nanoid } from "nanoid";
 
 export const bookSchema = sqliteTable("book", {
@@ -23,8 +28,8 @@ export const trackSchema = sqliteTable("track", {
     .default(false),
   startedAt: text("started_at")
     .notNull()
-    .default(sql`CURRENT_TIMESTAMP()`),
-  bookID: text("book_id")
+    .default(sql`CURRENT_TIMESTAMP`),
+  bookId: text("book_id")
     .notNull()
     .references(() => bookSchema.id, { onDelete: "cascade" }),
 });
@@ -37,15 +42,15 @@ export const commentSchema = sqliteTable("comment", {
   content: text("content").notNull(),
   createdAt: text("created_at")
     .notNull()
-    .default(sql`CURRENT_TIMESTAMP()`),
-  trackID: text("track_id")
+    .default(sql`CURRENT_TIMESTAMP`),
+  trackId: text("track_id")
     .notNull()
     .references(() => trackSchema.id, { onDelete: "cascade" }),
 });
 
 export const trackRelations = relations(trackSchema, ({ one, many }) => ({
   book: one(bookSchema, {
-    fields: [trackSchema.bookID],
+    fields: [trackSchema.bookId],
     references: [bookSchema.id],
   }),
   comments: many(commentSchema),
@@ -57,7 +62,38 @@ export const bookRelations = relations(bookSchema, ({ many }) => ({
 
 export const commentRelations = relations(commentSchema, ({ one }) => ({
   track: one(trackSchema, {
-    fields: [commentSchema.trackID],
+    fields: [commentSchema.trackId],
     references: [trackSchema.id],
+  }),
+}));
+
+export const genreSchema = sqliteTable("genre", {
+  name: text("name").primaryKey().notNull(),
+});
+
+// MANY TO MANY TABLE
+
+export const booksToGenres = sqliteTable(
+  "book_to_genre",
+  {
+    bookId: text("book_id")
+      .notNull()
+      .references(() => bookSchema.id),
+    genreName: integer("genre_name")
+      .notNull()
+      .references(() => genreSchema.name),
+  },
+  (t) => ({
+    pk: primaryKey({ columns: [t.bookId, t.genreName] }),
+  })
+);
+export const booksToGenresRelations = relations(booksToGenres, ({ one }) => ({
+  genre: one(genreSchema, {
+    fields: [booksToGenres.genreName],
+    references: [genreSchema.name],
+  }),
+  book: one(bookSchema, {
+    fields: [booksToGenres.bookId],
+    references: [bookSchema.id],
   }),
 }));
