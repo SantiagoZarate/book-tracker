@@ -1,3 +1,5 @@
+"use client";
+
 import { XMarkMicroIcon } from "@/app/components/icons/XMarkMicroIcon";
 import { Button } from "@/app/components/ui/button";
 import {
@@ -9,8 +11,21 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/app/components/ui/dialog";
+import { toast } from "sonner";
+import { useServerAction } from "zsa-react";
+import { deleteTrackAction } from "./actions";
 
-export function DeleteButton() {
+interface Props {
+  id: string;
+}
+
+export function DeleteButton({ id }: Props) {
+  const { execute } = useServerAction(deleteTrackAction, {
+    onSuccess() {
+      toast("Book track deleted");
+    },
+  });
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -27,7 +42,12 @@ export function DeleteButton() {
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
-          <Button variant={"destructive"}>Delete</Button>
+          <Button
+            onClick={() => execute({ trackId: id })}
+            variant={"destructive"}
+          >
+            Delete
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

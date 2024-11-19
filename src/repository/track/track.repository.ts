@@ -32,6 +32,10 @@ const trackRepository: TrackRepository = {
 
     return data[0];
   },
+  async delete({ id }) {
+    const data = await db.delete(trackSchema).where(eq(trackSchema.id, id));
+    return data.rowsAffected === 1;
+  },
 };
 
 export { trackRepository };

@@ -5,4 +5,5 @@ export interface TrackRepository {
   getAll: () => Promise<TrackBookDTO[]>;
   create: (payload: TrackInsert) => Promise<TrackSelect>;
   getOne: (id: TrackSelect) => Promise<TrackBookDTO>;
+  delete: (id: TrackSelect) => Promise<boolean>;
 }

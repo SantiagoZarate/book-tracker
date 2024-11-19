@@ -35,7 +35,7 @@ export default async function page({ params: { trackid } }: Props) {
         <p>{pagesLeft} Pages left</p>
       </section>
       <section>
-        <DeleteButton />
+        <DeleteButton id={trackid} />
         <Button>
           <PlusMicroIcon />
         </Button>

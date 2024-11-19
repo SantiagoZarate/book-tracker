@@ -21,7 +21,6 @@ const SIDEBAR_LINKS = [
 
 export function Navbar() {
   const path = usePathname();
-  console.log({ path });
 
   return (
     <nav className="w-full flex flex-col">

@@ -1,5 +1,5 @@
 import { trackRepository } from "@/repository/track/track.repository";
-import { TrackInsert, TrackSelect } from "@/types/track.type";
+import { TrackDelete, TrackInsert, TrackSelect } from "@/types/track.type";
 
 const trackService = {
   async getAll() {
@@ -12,6 +12,10 @@ const trackService = {
   },
   async create(payload: TrackInsert) {
     const data = await trackRepository.create(payload);
+    return data;
+  },
+  async delete(id: TrackDelete) {
+    const data = await trackRepository.delete(id);
     return data;
   },
 };
