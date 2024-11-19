@@ -19,6 +19,7 @@
     "drizzle-orm": "0.36.3",
     "libsql": "0.5.0-pre.2",
     "lucide-react": "^0.460.0",
+    "nanoid": "4",
     "next": "14.2.18",
     "next-themes": "^0.4.3",
     "react": "^18",
