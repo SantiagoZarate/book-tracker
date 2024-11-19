@@ -26,16 +26,38 @@ export const trackSchema = sqliteTable("track", {
     .default(sql`CURRENT_TIMESTAMP()`),
   bookID: text("book_id")
     .notNull()
-    .references(() => bookSchema.id),
+    .references(() => bookSchema.id, { onDelete: "cascade" }),
 });
 
-export const trackRelations = relations(trackSchema, ({ one }) => ({
+export const commentSchema = sqliteTable("comment", {
+  id: text("id")
+    .primaryKey()
+    .notNull()
+    .$defaultFn(() => nanoid()),
+  content: text("content").notNull(),
+  createdAt: text("created_at")
+    .notNull()
+    .default(sql`CURRENT_TIMESTAMP()`),
+  trackID: text("track_id")
+    .notNull()
+    .references(() => trackSchema.id, { onDelete: "cascade" }),
+});
+
+export const trackRelations = relations(trackSchema, ({ one, many }) => ({
   book: one(bookSchema, {
     fields: [trackSchema.bookID],
     references: [bookSchema.id],
   }),
+  comments: many(commentSchema),
 }));
 
 export const bookRelations = relations(bookSchema, ({ many }) => ({
   tracks: many(trackSchema),
+}));
+
+export const commentRelations = relations(commentSchema, ({ one }) => ({
+  track: one(trackSchema, {
+    fields: [commentSchema.trackID],
+    references: [trackSchema.id],
+  }),
 }));
