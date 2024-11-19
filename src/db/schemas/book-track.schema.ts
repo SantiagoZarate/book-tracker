@@ -13,7 +13,7 @@ export const bookSchema = sqliteTable("book", {
     .notNull()
     .$defaultFn(() => nanoid()),
   title: text("title").notNull(),
-  author: text("author"),
+  author: text("author").notNull(),
   totalPages: integer("total_pages").notNull().default(1),
 });
 
@@ -58,6 +58,7 @@ export const trackRelations = relations(trackSchema, ({ one, many }) => ({
 
 export const bookRelations = relations(bookSchema, ({ many }) => ({
   tracks: many(trackSchema),
+  genres: many(booksToGenres),
 }));
 
 export const commentRelations = relations(commentSchema, ({ one }) => ({
@@ -70,6 +71,10 @@ export const commentRelations = relations(commentSchema, ({ one }) => ({
 export const genreSchema = sqliteTable("genre", {
   name: text("name").primaryKey().notNull(),
 });
+
+export const genreRelations = relations(genreSchema, ({ many }) => ({
+  books: many(booksToGenres),
+}));
 
 // MANY TO MANY TABLE
 
