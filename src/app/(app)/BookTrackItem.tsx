@@ -6,16 +6,19 @@ import {
 } from "@/app/components/ui/tooltip";
 import { TrackBookDTO } from "@/shared/dtos/trackDTO";
 import Link from "next/link";
+import { TrackBar } from "../components/track/TrackBar";
 
 interface Props {
   track: TrackBookDTO;
 }
 
 export function BookTrackItem({ track }: Props) {
-  const percentageCompleted = (
+  const completedPercentage = (
     (track.pagesAlreadyRead / track.book.totalPages) *
     100
   ).toFixed(1);
+
+  const pagesLeft = track.book.totalPages - track.pagesAlreadyRead;
 
   return (
     <TooltipProvider delayDuration={0}>
@@ -28,19 +31,14 @@ export function BookTrackItem({ track }: Props) {
             <header className="flex justify-between items-center">
               <p className="font-bold text-sm">{track.book.title}</p>
               <p className="text-xs rounded-lg bg-secondary p-2 font-bold">
-                {percentageCompleted}%
+                {completedPercentage}%
               </p>
             </header>
-            <footer className="relative w-full h-2 rounded-md bg-input">
-              <div
-                style={{ width: `${percentageCompleted}%` }}
-                className="h-full absolute left-0 top-0 bg-green-700 z-10 rounded-md"
-              />
-            </footer>
+            <TrackBar completedPercentage={completedPercentage} />
           </Link>
         </TooltipTrigger>
         <TooltipContent>
-          <p>{track.book.totalPages - track.pagesAlreadyRead} pages left</p>
+          <p>{pagesLeft} pages left</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
