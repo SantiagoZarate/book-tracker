@@ -12,12 +12,12 @@ export default async function Page({ searchParams }: Props) {
 
   return (
     <section className="flex flex-col gap-12">
-      <Search />
       <section className="flex flex-col gap-4">
         <header>
           <p>Books List</p>
         </header>
       </section>
+      <Search />
       <BooksList query={query} />
     </section>
   );
