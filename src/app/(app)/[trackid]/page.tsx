@@ -1,8 +1,7 @@
-import { PlusMicroIcon } from "@/app/components/icons/PlusMicroIcon";
 import { TrackBar } from "@/app/components/track/TrackBar";
-import { Button } from "@/app/components/ui/button";
 import { trackService } from "@/services/track/track.service";
 import moment from "moment";
+import { AddSessionButton } from "./AddSessionButton";
 import { DeleteButton } from "./DeleteButton";
 
 interface Props {
@@ -36,9 +35,7 @@ export default async function page({ params: { trackid } }: Props) {
       </section>
       <section>
         <DeleteButton id={trackid} />
-        <Button>
-          <PlusMicroIcon />
-        </Button>
+        <AddSessionButton id={trackid} />
       </section>
     </section>
   );

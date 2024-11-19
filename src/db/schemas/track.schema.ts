@@ -39,7 +39,7 @@ export const sessionSchema = sqliteTable("session", {
     .notNull()
     .$defaultFn(() => nanoid()),
   content: text("content").notNull(),
-  pagesRead: text("pages_read").notNull(),
+  pagesRead: integer("pages_read").notNull(),
   createdAt: text("created_at")
     .notNull()
     .default(sql`CURRENT_TIMESTAMP`),

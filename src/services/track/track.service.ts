@@ -1,10 +1,21 @@
+import { sessionRepository } from "@/repository/session/session.repository";
 import { trackRepository } from "@/repository/track/track.repository";
 import { TrackDelete, TrackInsert, TrackSelect } from "@/types/track.type";
 
 const trackService = {
   async getAll() {
-    const data = await trackRepository.getAll();
-    return data;
+    const tracks = await trackRepository.getAll();
+
+    const tracksWithTotalPagesRead = await Promise.all(
+      tracks.map(async (track) => ({
+        ...track,
+        pagesAlreadyRead: await sessionRepository.getTotalPagesRead({
+          id: track.id,
+        }),
+      }))
+    );
+
+    return tracksWithTotalPagesRead;
   },
   async getOne(id: TrackSelect) {
     const data = await trackRepository.getOne(id);

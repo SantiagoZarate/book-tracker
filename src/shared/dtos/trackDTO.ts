@@ -4,7 +4,6 @@ import { bookSchemaDTO } from "./bookDTO";
 export const trackSchemaDTO = z.object({
   id: z.string(),
   bookId: z.string(),
-  pagesAlreadyRead: z.coerce.number(),
   isCompleted: z.coerce.boolean(),
   startedAt: z.string(),
 });

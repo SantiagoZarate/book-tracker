@@ -1,0 +1,1 @@
+ALTER TABLE `session` ALTER COLUMN "pages_read" TO "pages_read" integer NOT NULL;

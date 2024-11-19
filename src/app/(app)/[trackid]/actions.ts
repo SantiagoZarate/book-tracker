@@ -21,3 +21,12 @@ export const deleteTrackAction = createServerAction()
     revalidatePath("/", "page");
     redirect("/");
   });
+
+export const addSessionAction = createServerAction()
+  .input(
+    z.object({
+      id: z.string(),
+      pages: z.coerce.number(),
+    })
+  )
+  .handler(async () => {});
