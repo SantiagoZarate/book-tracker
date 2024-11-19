@@ -15,12 +15,17 @@ export default async function page({ params: { trackid } }: Props) {
     id: trackid,
   });
 
+  const totalPagesRead = track.sessions.reduce(
+    (acc, curr) => curr.pagesRead + acc,
+    0
+  );
+
   const completedPercentage = (
-    (track.pagesAlreadyRead / track.book.totalPages) *
+    (totalPagesRead / track.book.totalPages) *
     100
   ).toFixed(1);
 
-  const pagesLeft = track.book.totalPages - track.pagesAlreadyRead;
+  const pagesLeft = track.book.totalPages - totalPagesRead;
 
   return (
     <section className="p-2">

@@ -1,6 +1,9 @@
 import { db } from "@/db/db";
 import { trackSchema } from "@/db/schemas";
-import { trackBookSchemaDTO } from "@/shared/dtos/trackDTO";
+import {
+  trackBookSchemaDTO,
+  trackBookSessionsSchemaDTO,
+} from "@/shared/dtos/trackDTO";
 import { eq } from "drizzle-orm";
 import { TrackRepository } from ".";
 
@@ -18,9 +21,10 @@ const trackRepository: TrackRepository = {
       where: (table) => eq(table.id, id!),
       with: {
         book: true,
+        sessions: true,
       },
     });
-    return trackBookSchemaDTO.parse(data);
+    return trackBookSessionsSchemaDTO.parse(data);
   },
   async create(payload) {
     const data = await db
