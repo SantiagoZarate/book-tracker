@@ -1,21 +1,9 @@
-import { BOOKS } from "@/app/data/books";
+import { bookRepository } from "@/repository/book/book.repository";
 import { BookService } from ".";
 
 export const booksService: BookService = {
-  async getAll({ query }) {
-    return await new Promise((resolve) => {
-      setTimeout(() => {
-        if (!query) {
-          resolve(BOOKS);
-          return;
-        }
-
-        const filteredBooks = BOOKS.filter(
-          (b) => b.title.toLowerCase().indexOf(query.toLowerCase()) !== -1
-        );
-
-        resolve(filteredBooks);
-      }, 500);
-    });
+  async getAll({ query = "" }) {
+    const books = await bookRepository.getAll({ query });
+    return books;
   },
 };

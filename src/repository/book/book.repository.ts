@@ -1,16 +1,16 @@
 import { db } from "@/db/db";
 import { bookGenresSchemaDTO } from "@/shared/dtos/bookDTO";
-import { eq } from "drizzle-orm";
+import { eq, like } from "drizzle-orm";
 import { IBookRepository } from ".";
 
 const bookRepository: IBookRepository = {
-  async getAll() {
+  async getAll({ query = "" }) {
     const data = await db.query.bookSchema.findMany({
+      where: (table) => like(table.title, `%${query}%`),
       with: {
         genres: true,
       },
     });
-
     return data.map((d) => bookGenresSchemaDTO.parse(d));
   },
   async getOne({ id }) {
