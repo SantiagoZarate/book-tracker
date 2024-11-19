@@ -1,5 +1,6 @@
 import { db } from "@/db/db";
 import { sessionSchema } from "@/db/schemas";
+import { SessionDelete, SessionInsert } from "@/types/session.type";
 import { TrackSelect } from "@/types/track.type";
 import { eq, sql } from "drizzle-orm";
 
@@ -18,6 +19,22 @@ const sessionRepository = {
       .where(eq(sessionSchema.trackId, id));
 
     return data[0]?.totalPages || 0;
+  },
+  async insert(payload: SessionInsert) {
+    const data = await db
+      .insert(sessionSchema)
+      .values({
+        trackId: payload.trackId,
+        pagesRead: payload.pagesRead,
+        content: payload.content ?? "",
+      })
+      .returning({ id: sessionSchema.id });
+
+    return data[0];
+  },
+  async delete({ id }: SessionDelete) {
+    const data = await db.delete(sessionSchema).where(eq(sessionSchema.id, id));
+    return data.rowsAffected === 1;
   },
 };
 
