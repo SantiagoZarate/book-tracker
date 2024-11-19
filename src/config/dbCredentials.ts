@@ -1,6 +1,6 @@
 import { Config } from "@libsql/client";
-import { resolve } from "node:path";
+import path from "node:path";
 
 export const dbCredentials: Config = {
-  url: `file:${resolve(__dirname, "../db/local.development.db")}`,
+  url: `file:${path.join(process.cwd(), `/src/db/local.development.db`)}`,
 };
