@@ -2,7 +2,7 @@
 // ways of creating it, selecting an already existent book
 // or adding a new one.
 
-import { createBookTrack } from "./action";
+import { CreateForm } from "./CreateForm";
 
 export default function page() {
   return (
@@ -10,10 +10,7 @@ export default function page() {
       <header>
         <p className="text-xl">Create a new book track</p>
       </header>
-      <form action={createBookTrack}>
-        <input name="title" type="text" placeholder="the martian" />
-        <button>Create</button>
-      </form>
+      <CreateForm />
     </section>
   );
 }
