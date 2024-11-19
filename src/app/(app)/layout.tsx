@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Sidebar } from "../components/common/sidebar/Sidebar";
 import { Toaster } from "../components/ui/sonner";
 import "../styles/index.css";
 
@@ -29,7 +30,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <section className="grid grid-cols-[auto_1fr] max-w-screen-sm min-h-dvh mx-auto">
+          <Sidebar />
+          <main className="">{children}</main>
+        </section>
         <Toaster />
       </body>
     </html>
