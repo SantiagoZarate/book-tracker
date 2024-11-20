@@ -1,20 +1,20 @@
-"use client";
+'use client';
 
-import { TrackBar } from "@/app/components/track/TrackBar";
-import { TrackHeader } from "@/app/components/track/TrackHeader";
-import { ProgressBar } from "@/app/components/ui/ProgressBar";
-import { useEffect, useState } from "react";
-import { useTracker } from "../../hooks/useTracker";
-import { CompleteBanner } from "./CompleteBanner";
-import { StickyHeader } from "./header/StickyHeader";
-import { SessionForm } from "./SessionForm";
-import { Sessions } from "./Sessions";
+import { TrackBar } from '@/app/components/track/TrackBar';
+import { TrackHeader } from '@/app/components/track/TrackHeader';
+import { ProgressBar } from '@/app/components/ui/ProgressBar';
+import { useEffect, useState } from 'react';
+import { useTracker } from '../../hooks/useTracker';
+import { CompleteBanner } from './CompleteBanner';
+import { StickyHeader } from './header/StickyHeader';
+import { SessionForm } from './SessionForm';
+import { Sessions } from './Sessions';
 
 export default function Page() {
   const { track } = useTracker();
   const totalPagesRead = track.sessions.reduce(
     (acc, curr) => curr.pagesRead + acc,
-    0
+    0,
   );
 
   const [pagesCount, setPagesCount] = useState<number>(totalPagesRead);
@@ -60,7 +60,7 @@ export default function Page() {
           <ProgressBar percentaje={completedPercentage} />
           <ProgressBar
             percentaje={futureCompletedPercentage}
-            variant={"future"}
+            variant={'future'}
           />
         </TrackBar>
         <p>{pagesLeft} Pages left</p>

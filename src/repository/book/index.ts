@@ -1,5 +1,5 @@
-import { BookGenresDTO } from "@/shared/dtos/bookDTO";
-import { BookSelect } from "@/types/book.type";
+import { BookGenresDTO } from '@/shared/dtos/bookDTO';
+import { BookSelect } from '@/types/book.type';
 
 export interface IBookRepository {
   getAll: (config: FilteredOptions) => Promise<BookGenresDTO[]>;

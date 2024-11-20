@@ -1,8 +1,8 @@
-import { PropsWithChildren } from "react";
+import { PropsWithChildren } from 'react';
 
 export function TrackBar({ children }: PropsWithChildren) {
   return (
-    <section className="relative w-full h-2 rounded-md bg-input">
+    <section className="relative h-2 w-full rounded-md bg-input">
       {children}
     </section>
   );

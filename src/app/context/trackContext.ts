@@ -1,7 +1,7 @@
-import { TrackBookSessionsDTO } from "@/shared/dtos/trackDTO";
-import { createContext } from "react";
+import { TrackBookSessionsDTO } from '@/shared/dtos/trackDTO';
+import { createContext } from 'react';
 
-export type Session = TrackBookSessionsDTO["sessions"];
+export type Session = TrackBookSessionsDTO['sessions'];
 
 interface TrackContextProps {
   track: TrackBookSessionsDTO;

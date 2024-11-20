@@ -1,25 +1,25 @@
-"use client";
+'use client';
 
-import { CalendarMicroIcon } from "@/app/components/icons/CalendarMicroIcon";
-import { XMarkMicroIcon } from "@/app/components/icons/XMarkMicroIcon";
-import { Button } from "@/app/components/ui/button";
-import { toast } from "sonner";
-import { useServerAction } from "zsa-react";
-import { useTracker } from "../../hooks/useTracker";
-import { deleteSessionAction } from "./actions";
+import { CalendarMicroIcon } from '@/app/components/icons/CalendarMicroIcon';
+import { XMarkMicroIcon } from '@/app/components/icons/XMarkMicroIcon';
+import { Button } from '@/app/components/ui/button';
+import { toast } from 'sonner';
+import { useServerAction } from 'zsa-react';
+import { useTracker } from '../../hooks/useTracker';
+import { deleteSessionAction } from './actions';
 
 export function Sessions() {
   const { track, addSession } = useTracker();
   const { sessions } = track;
   const { execute } = useServerAction(deleteSessionAction, {
     onSuccess() {
-      toast("Session deleted succesfully");
+      toast('Session deleted succesfully');
     },
   });
 
   if (sessions.length === 0) {
     return (
-      <section className="flex p-8 w-full bg-secondary rounded-lg items-center justify-center">
+      <section className="flex w-full items-center justify-center rounded-lg bg-secondary p-8">
         There are no sessions for this track
       </section>
     );
@@ -34,8 +34,8 @@ export function Sessions() {
   };
 
   return (
-    <section className="p-2 flex flex-col gap-2">
-      <header className="flex gap-2 items-center">
+    <section className="flex flex-col gap-2 p-2">
+      <header className="flex items-center gap-2">
         <span>
           <CalendarMicroIcon />
         </span>
@@ -46,18 +46,18 @@ export function Sessions() {
           </p>
         </section>
       </header>
-      <ul className=" flex flex-col gap-1">
+      <ul className="flex flex-col gap-1">
         {sessions.map((session) => (
           <li
             key={session.id}
-            className="flex justify-between rounded-sm bg-secondary border border-dashed border-input p-1"
+            className="flex justify-between rounded-sm border border-dashed border-input bg-secondary p-1"
           >
             <section className="flex flex-col gap-1">
               <p className="text-sm">{session.pagesRead} Pages</p>
               <p className="text-xs opacity-50">{session.createdAt}</p>
             </section>
             <form action={() => handleDeleteSession(session.id)}>
-              <Button className="bg-background" variant={"icon"}>
+              <Button className="bg-background" variant={'icon'}>
                 <XMarkMicroIcon />
               </Button>
             </form>

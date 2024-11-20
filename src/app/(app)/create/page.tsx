@@ -2,7 +2,7 @@
 // ways of creating it, selecting an already existent book
 // or adding a new one.
 
-import { CreateForm } from "./CreateForm";
+import { CreateForm } from './CreateForm';
 
 export default function page() {
   return (

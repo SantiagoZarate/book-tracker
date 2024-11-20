@@ -1,5 +1,5 @@
-import { sessionRepository } from "@/repository/session/session.repository";
-import { SessionDelete, SessionInsert } from "@/types/session.type";
+import { sessionRepository } from '@/repository/session/session.repository';
+import { SessionDelete, SessionInsert } from '@/types/session.type';
 
 const sessionService = {
   async create(payload: SessionInsert) {

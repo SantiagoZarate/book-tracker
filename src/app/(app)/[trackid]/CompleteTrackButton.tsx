@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import { toast } from "sonner";
-import { useServerAction } from "zsa-react";
-import { useTracker } from "../../hooks/useTracker";
-import { toggleCompleteAction } from "./actions";
+import { toast } from 'sonner';
+import { useServerAction } from 'zsa-react';
+import { useTracker } from '../../hooks/useTracker';
+import { toggleCompleteAction } from './actions';
 
 export function CompleteTrackButton() {
   const { track, addSession } = useTracker();
   const { execute } = useServerAction(toggleCompleteAction, {
     onSuccess() {
-      toast("Book track completed state changed");
+      toast('Book track completed state changed');
     },
   });
 

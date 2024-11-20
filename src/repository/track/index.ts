@@ -1,5 +1,5 @@
-import { TrackBookDTO, TrackBookSessionsDTO } from "@/shared/dtos/trackDTO";
-import { TrackInsert, TrackSelect } from "@/types/track.type";
+import { TrackBookDTO, TrackBookSessionsDTO } from '@/shared/dtos/trackDTO';
+import { TrackInsert, TrackSelect } from '@/types/track.type';
 
 export interface TrackRepository {
   getAll: () => Promise<TrackBookDTO[]>;
@@ -8,6 +8,6 @@ export interface TrackRepository {
   delete: (id: TrackSelect) => Promise<boolean>;
   toggleCompleteState: (
     id: TrackSelect,
-    currentState: boolean
+    currentState: boolean,
   ) => Promise<boolean>;
 }

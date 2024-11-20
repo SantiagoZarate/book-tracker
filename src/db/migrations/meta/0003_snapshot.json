@@ -67,12 +67,8 @@
           "name": "book_to_genre_book_id_book_id_fk",
           "tableFrom": "book_to_genre",
           "tableTo": "book",
-          "columnsFrom": [
-            "book_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["book_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -80,22 +76,15 @@
           "name": "book_to_genre_genre_name_genre_name_fk",
           "tableFrom": "book_to_genre",
           "tableTo": "genre",
-          "columnsFrom": [
-            "genre_name"
-          ],
-          "columnsTo": [
-            "name"
-          ],
+          "columnsFrom": ["genre_name"],
+          "columnsTo": ["name"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {
         "book_to_genre_book_id_genre_name_pk": {
-          "columns": [
-            "book_id",
-            "genre_name"
-          ],
+          "columns": ["book_id", "genre_name"],
           "name": "book_to_genre_book_id_genre_name_pk"
         }
       },
@@ -158,12 +147,8 @@
           "name": "comment_track_id_track_id_fk",
           "tableFrom": "comment",
           "tableTo": "track",
-          "columnsFrom": [
-            "track_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["track_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -218,12 +203,8 @@
           "name": "session_track_id_track_id_fk",
           "tableFrom": "session",
           "tableTo": "track",
-          "columnsFrom": [
-            "track_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["track_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -272,12 +253,8 @@
           "name": "track_book_id_book_id_fk",
           "tableFrom": "track",
           "tableTo": "book",
-          "columnsFrom": [
-            "book_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["book_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }

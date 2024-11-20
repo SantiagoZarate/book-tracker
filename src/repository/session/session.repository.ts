@@ -1,8 +1,8 @@
-import { db } from "@/db/db";
-import { sessionSchema } from "@/db/schemas";
-import { SessionDelete, SessionInsert } from "@/types/session.type";
-import { TrackSelect } from "@/types/track.type";
-import { eq, sql } from "drizzle-orm";
+import { db } from '@/db/db';
+import { sessionSchema } from '@/db/schemas';
+import { SessionDelete, SessionInsert } from '@/types/session.type';
+import { TrackSelect } from '@/types/track.type';
+import { eq, sql } from 'drizzle-orm';
 
 const sessionRepository = {
   async getAllByTrack({ id }: TrackSelect) {
@@ -26,7 +26,7 @@ const sessionRepository = {
       .values({
         trackId: payload.trackId,
         pagesRead: payload.pagesRead,
-        content: payload.content ?? "",
+        content: payload.content ?? '',
       })
       .returning({ id: sessionSchema.id });
 

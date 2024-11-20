@@ -1,51 +1,51 @@
-import { relations, sql } from "drizzle-orm";
-import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
-import { nanoid } from "nanoid";
-import { bookSchema } from "./book-track.schema";
+import { relations, sql } from 'drizzle-orm';
+import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
+import { nanoid } from 'nanoid';
+import { bookSchema } from './book-track.schema';
 
-export const trackSchema = sqliteTable("track", {
-  id: text("id")
+export const trackSchema = sqliteTable('track', {
+  id: text('id')
     .primaryKey()
     .notNull()
     .$defaultFn(() => nanoid()),
-  isCompleted: integer("is_completed", { mode: "boolean" })
+  isCompleted: integer('is_completed', { mode: 'boolean' })
     .notNull()
     .default(false),
-  startedAt: text("started_at")
+  startedAt: text('started_at')
     .notNull()
     .default(sql`CURRENT_TIMESTAMP`),
-  bookId: text("book_id")
+  bookId: text('book_id')
     .notNull()
-    .references(() => bookSchema.id, { onDelete: "cascade" }),
+    .references(() => bookSchema.id, { onDelete: 'cascade' }),
 });
 
-export const commentSchema = sqliteTable("comment", {
-  id: text("id")
+export const commentSchema = sqliteTable('comment', {
+  id: text('id')
     .primaryKey()
     .notNull()
     .$defaultFn(() => nanoid()),
-  content: text("content").notNull(),
-  createdAt: text("created_at")
+  content: text('content').notNull(),
+  createdAt: text('created_at')
     .notNull()
     .default(sql`CURRENT_TIMESTAMP`),
-  trackId: text("track_id")
+  trackId: text('track_id')
     .notNull()
-    .references(() => trackSchema.id, { onDelete: "cascade" }),
+    .references(() => trackSchema.id, { onDelete: 'cascade' }),
 });
 
-export const sessionSchema = sqliteTable("session", {
-  id: text("id")
+export const sessionSchema = sqliteTable('session', {
+  id: text('id')
     .primaryKey()
     .notNull()
     .$defaultFn(() => nanoid()),
-  content: text("content").notNull(),
-  pagesRead: integer("pages_read").notNull(),
-  createdAt: text("created_at")
+  content: text('content').notNull(),
+  pagesRead: integer('pages_read').notNull(),
+  createdAt: text('created_at')
     .notNull()
     .default(sql`CURRENT_TIMESTAMP`),
-  trackId: text("track_id")
+  trackId: text('track_id')
     .notNull()
-    .references(() => trackSchema.id, { onDelete: "cascade" }),
+    .references(() => trackSchema.id, { onDelete: 'cascade' }),
 });
 
 export const trackRelations = relations(trackSchema, ({ one, many }) => ({

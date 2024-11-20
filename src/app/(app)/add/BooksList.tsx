@@ -1,5 +1,5 @@
-import { booksService } from "@/services/book/book.service";
-import { Books } from "./Books";
+import { booksService } from '@/services/book/book.service';
+import { Books } from './Books';
 
 interface Props {
   query?: string | null;

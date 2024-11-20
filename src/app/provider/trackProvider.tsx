@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { trackContext } from "@/app/context/trackContext";
-import { TrackBookSessionsDTO } from "@/shared/dtos/trackDTO";
-import { PropsWithChildren, useOptimistic } from "react";
+import { trackContext } from '@/app/context/trackContext';
+import { TrackBookSessionsDTO } from '@/shared/dtos/trackDTO';
+import { PropsWithChildren, useOptimistic } from 'react';
 
 interface Props extends PropsWithChildren {
   track: TrackBookSessionsDTO;
@@ -11,9 +11,9 @@ interface Props extends PropsWithChildren {
 export function TrackProvider({ track, children }: Props) {
   const [optimisticTrack, addOptimisticTrack] = useOptimistic(
     track,
-    (state: TrackBookSessionsDTO, newState: TrackBookSessionsDTO) => {
+    (_state: TrackBookSessionsDTO, newState: TrackBookSessionsDTO) => {
       return newState;
-    }
+    },
   );
   return (
     <trackContext.Provider

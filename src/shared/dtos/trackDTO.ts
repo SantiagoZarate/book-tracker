@@ -1,6 +1,6 @@
-import { z } from "zod";
-import { bookSchemaDTO } from "./bookDTO";
-import { sessionSchemaDTO } from "./sessionDTO";
+import { z } from 'zod';
+import { bookSchemaDTO } from './bookDTO';
+import { sessionSchemaDTO } from './sessionDTO';
 
 export const trackSchemaDTO = z.object({
   id: z.string(),
@@ -31,7 +31,7 @@ export const trackBookSessionsSchemaDTO = trackBookSchemaDTO.extend({
   sessions: z.array(
     sessionSchemaDTO.omit({
       trackId: true,
-    })
+    }),
   ),
 });
 

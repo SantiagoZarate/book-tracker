@@ -1,7 +1,7 @@
-import { dbCredentials } from "@/config/dbCredentials";
-import { createClient } from "@libsql/client";
-import { drizzle } from "drizzle-orm/libsql";
-import * as schema from "./schemas/index";
+import { dbCredentials } from '@/config/dbCredentials';
+import { createClient } from '@libsql/client';
+import { drizzle } from 'drizzle-orm/libsql';
+import * as schema from './schemas/index';
 
 const sqliteClient = createClient(dbCredentials);
 

@@ -1,6 +1,6 @@
-import { sessionRepository } from "@/repository/session/session.repository";
-import { trackRepository } from "@/repository/track/track.repository";
-import { TrackDelete, TrackInsert, TrackSelect } from "@/types/track.type";
+import { sessionRepository } from '@/repository/session/session.repository';
+import { trackRepository } from '@/repository/track/track.repository';
+import { TrackDelete, TrackInsert, TrackSelect } from '@/types/track.type';
 
 const trackService = {
   async getAll() {
@@ -12,7 +12,7 @@ const trackService = {
         pagesAlreadyRead: await sessionRepository.getTotalPagesRead({
           id: track.id,
         }),
-      }))
+      })),
     );
 
     return tracksWithTotalPagesRead;
@@ -33,7 +33,7 @@ const trackService = {
     const data = await trackRepository.getOne(id);
 
     if (!data) {
-      throw new Error("Track not found");
+      throw new Error('Track not found');
     }
 
     await trackRepository.toggleCompleteState(id, data.isCompleted);

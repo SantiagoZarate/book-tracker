@@ -1,11 +1,11 @@
-import { db } from "@/db/db";
-import { trackSchema } from "@/db/schemas";
+import { db } from '@/db/db';
+import { trackSchema } from '@/db/schemas';
 import {
   trackBookSchemaDTO,
   trackBookSessionsSchemaDTO,
-} from "@/shared/dtos/trackDTO";
-import { eq } from "drizzle-orm";
-import { TrackRepository } from ".";
+} from '@/shared/dtos/trackDTO';
+import { eq } from 'drizzle-orm';
+import { TrackRepository } from '.';
 
 const trackRepository: TrackRepository = {
   async getAll() {

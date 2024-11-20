@@ -1,5 +1,5 @@
-import { SessionRAW } from "@/types/session.type";
-import { z } from "zod";
+import { SessionRAW } from '@/types/session.type';
+import { z } from 'zod';
 
 export const sessionSchemaDTO = z.object({
   id: z.string(),
@@ -7,6 +7,6 @@ export const sessionSchemaDTO = z.object({
   pagesRead: z.coerce.number(),
   createdAt: z.string(),
   trackId: z.string(),
-}) satisfies z.ZodType<Omit<SessionRAW, "trackId">>;
+}) satisfies z.ZodType<Omit<SessionRAW, 'trackId'>>;
 
 export type SessionDTO = z.infer<typeof sessionSchemaDTO>;

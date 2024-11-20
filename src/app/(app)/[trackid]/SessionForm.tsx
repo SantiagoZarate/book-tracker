@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { Button } from "@/app/components/ui/button";
-import { fadeInAndOut } from "@/app/lib/motion-animations";
-import { AnimatePresence, motion } from "framer-motion";
-import { nanoid } from "nanoid";
-import { toast } from "sonner";
-import { useServerAction } from "zsa-react";
-import { useTracker } from "../../hooks/useTracker";
-import { addSessionAction } from "./actions";
+import { Button } from '@/app/components/ui/button';
+import { fadeInAndOut } from '@/app/lib/motion-animations';
+import { AnimatePresence, motion } from 'framer-motion';
+import { nanoid } from 'nanoid';
+import { toast } from 'sonner';
+import { useServerAction } from 'zsa-react';
+import { useTracker } from '../../hooks/useTracker';
+import { addSessionAction } from './actions';
 
 interface Props {
   initialPages: number;
@@ -27,7 +27,7 @@ export function SessionForm({
   const { addSession, track } = useTracker();
   const { execute, isPending } = useServerAction(addSessionAction, {
     onSuccess() {
-      toast("Session added correctly");
+      toast('Session added correctly');
     },
   });
 
@@ -41,7 +41,7 @@ export function SessionForm({
         {
           pagesRead: pagesReadDuringThisSession,
           createdAt: new Date().toString(),
-          content: "nueva session",
+          content: 'nueva session',
           id: nanoid(),
         },
       ],
@@ -66,16 +66,16 @@ export function SessionForm({
       </header>
       <section className="">
         <form className="flex items-center gap-2" action={handleAddSession}>
-          <section className="flex-1 flex bg-input divide-x divide-primary rounded-lg overflow-hidden">
+          <section className="flex flex-1 divide-x divide-primary overflow-hidden rounded-lg bg-input">
             <button
               type="button"
               disabled={isPending || pagesCount === initialPages}
               onClick={onDecreasePage}
-              className="disabled:bg-gray-400 transition aspect-square px-4 hover:bg-background"
+              className="aspect-square px-4 transition hover:bg-background disabled:bg-gray-400"
             >
               -
             </button>
-            <p className="flex-1 text-center p-2">{pagesCount}</p>
+            <p className="flex-1 p-2 text-center">{pagesCount}</p>
             <button
               type="button"
               disabled={isPending || pagesCount === totalPages}

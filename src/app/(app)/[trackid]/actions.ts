@@ -1,17 +1,17 @@
-"use server";
+'use server';
 
-import { sessionService } from "@/services/session/sessionService";
-import { trackService } from "@/services/track/track.service";
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
-import { z } from "zod";
-import { createServerAction } from "zsa";
+import { sessionService } from '@/services/session/sessionService';
+import { trackService } from '@/services/track/track.service';
+import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
+import { z } from 'zod';
+import { createServerAction } from 'zsa';
 
 export const deleteTrackAction = createServerAction()
   .input(
     z.object({
       trackId: z.string(),
-    })
+    }),
   )
   .handler(async ({ input }) => {
     try {
@@ -19,35 +19,35 @@ export const deleteTrackAction = createServerAction()
     } catch (error) {
       console.log(error);
     }
-    revalidatePath("/", "page");
-    redirect("/");
+    revalidatePath('/', 'page');
+    redirect('/');
   });
 
 export const addSessionAction = createServerAction()
   .input(
     z.object({
       trackId: z.string(),
-      pages: z.coerce.number().min(1, "Session must at least have one page"),
-    })
+      pages: z.coerce.number().min(1, 'Session must at least have one page'),
+    }),
   )
   .handler(async ({ input }) => {
     try {
       await sessionService.create({
-        content: "",
+        content: '',
         pagesRead: input.pages,
         trackId: input.trackId,
       });
     } catch (error) {
       console.log(error);
     }
-    revalidatePath("/" + input.trackId, "layout");
+    revalidatePath('/' + input.trackId, 'layout');
   });
 
 export const toggleCompleteAction = createServerAction()
   .input(
     z.object({
       trackId: z.string(),
-    })
+    }),
   )
   .handler(async ({ input }) => {
     try {
@@ -55,7 +55,7 @@ export const toggleCompleteAction = createServerAction()
     } catch (error) {
       console.log(error);
     }
-    revalidatePath("/" + input.trackId, "layout");
+    revalidatePath('/' + input.trackId, 'layout');
   });
 
 export const deleteSessionAction = createServerAction()
@@ -63,7 +63,7 @@ export const deleteSessionAction = createServerAction()
     z.object({
       sessionId: z.string(),
       trackId: z.string(),
-    })
+    }),
   )
   .handler(async ({ input }) => {
     try {
@@ -71,5 +71,5 @@ export const deleteSessionAction = createServerAction()
     } catch (error) {
       console.log(error);
     }
-    revalidatePath("/" + input.trackId, "layout");
+    revalidatePath('/' + input.trackId, 'layout');
   });

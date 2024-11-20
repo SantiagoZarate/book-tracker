@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { Button } from "@/app/components/ui/button";
+import { Button } from '@/app/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -9,23 +9,23 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/app/components/ui/dialog";
-import { toast } from "sonner";
-import { useServerAction } from "zsa-react";
-import { useTracker } from "../../hooks/useTracker";
-import { deleteTrackAction } from "./actions";
+} from '@/app/components/ui/dialog';
+import { toast } from 'sonner';
+import { useServerAction } from 'zsa-react';
+import { useTracker } from '../../hooks/useTracker';
+import { deleteTrackAction } from './actions';
 
 export function DeleteButton() {
   const { track } = useTracker();
   const { execute } = useServerAction(deleteTrackAction, {
     onSuccess() {
-      toast("Book track deleted");
+      toast('Book track deleted');
     },
   });
 
   return (
     <Dialog>
-      <DialogTrigger className="flex items-center p-1 text-sm hover:bg-secondary transition w-full rounded-sm">
+      <DialogTrigger className="flex w-full items-center rounded-sm p-1 text-sm transition hover:bg-secondary">
         Delete track
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
@@ -39,7 +39,7 @@ export function DeleteButton() {
         <DialogFooter>
           <Button
             onClick={() => execute({ trackId: track.id })}
-            variant={"destructive"}
+            variant={'destructive'}
           >
             Delete
           </Button>

@@ -1,5 +1,5 @@
-import { MotionList } from "@/app/components/motion/MotionList";
-import { MotionListItem } from "@/app/components/motion/MotionListItem";
+import { MotionList } from '@/app/components/motion/MotionList';
+import { MotionListItem } from '@/app/components/motion/MotionListItem';
 
 export function Loader() {
   return (
@@ -17,8 +17,8 @@ export function Loader() {
 
 export function Skeleton() {
   return (
-    <div className="[&_div]:rounded-lg [&_div]:bg-input animate-pulse flex items-center justify-between w-full p-2">
-      <section className="flex flex-col gap-2 flex-1">
+    <div className="flex w-full animate-pulse items-center justify-between p-2 [&_div]:rounded-lg [&_div]:bg-input">
+      <section className="flex flex-1 flex-col gap-2">
         <div className="h-5 w-1/3" />
         <ul className="flex gap-2">
           <div className="h-4 w-12" />
@@ -26,7 +26,7 @@ export function Skeleton() {
         </ul>
       </section>
       <section>
-        <div className="w-16 h-8" />
+        <div className="h-8 w-16" />
       </section>
     </div>
   );

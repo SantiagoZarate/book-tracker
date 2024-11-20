@@ -1,7 +1,7 @@
-import { db } from "../db";
-import { bookSchema, booksToGenres, genreSchema } from "../schemas";
-import { MOCK_BOOKS } from "./mockup/book.mock";
-import { MOCK_GENRES } from "./mockup/genre.mock";
+import { db } from '../db';
+import { bookSchema, booksToGenres, genreSchema } from '../schemas';
+import { MOCK_BOOKS } from './mockup/book.mock';
+import { MOCK_GENRES } from './mockup/genre.mock';
 
 async function seed() {
   try {
@@ -31,7 +31,7 @@ async function seed() {
         }));
 
         await db.insert(booksToGenres).values(bookToGenres);
-      })
+      }),
     );
   } catch (error) {
     console.log(error);

@@ -1,10 +1,10 @@
-import { db } from "@/db/db";
-import { BookGenresDTO, bookGenresSchemaDTO } from "@/shared/dtos/bookDTO";
-import { eq, like } from "drizzle-orm";
-import { IBookRepository } from ".";
+import { db } from '@/db/db';
+import { BookGenresDTO, bookGenresSchemaDTO } from '@/shared/dtos/bookDTO';
+import { eq, like } from 'drizzle-orm';
+import { IBookRepository } from '.';
 
 const bookRepository: IBookRepository = {
-  async getAll({ query = "" }) {
+  async getAll({ query = '' }) {
     const data = await db.query.bookSchema.findMany({
       where: (table) => like(table.title, `%${query}%`),
       with: {

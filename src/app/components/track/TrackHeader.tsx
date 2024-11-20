@@ -1,17 +1,17 @@
-import { TrackMenu } from "@/app/(app)/[trackid]/TrackMenu";
-import { useTracker } from "@/app/hooks/useTracker";
-import moment from "moment";
-import Link from "next/link";
-import { BackArrowMicroIcon } from "../icons/BackArrowMicroIcon";
-import { Button } from "../ui/button";
+import { TrackMenu } from '@/app/(app)/[trackid]/TrackMenu';
+import { useTracker } from '@/app/hooks/useTracker';
+import moment from 'moment';
+import Link from 'next/link';
+import { BackArrowMicroIcon } from '../icons/BackArrowMicroIcon';
+import { Button } from '../ui/button';
 
 export function TrackHeader() {
   const { track } = useTracker();
 
   return (
     <header className="flex flex-col gap-8 p-4">
-      <Button variant={"icon"}>
-        <Link href={"/"}>
+      <Button variant={'icon'}>
+        <Link href={'/'}>
           <BackArrowMicroIcon />
         </Link>
       </Button>

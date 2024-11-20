@@ -3,11 +3,11 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/app/components/ui/tooltip";
-import { TrackBookPagesDTO } from "@/shared/dtos/trackDTO";
-import Link from "next/link";
-import { TrackBar } from "../components/track/TrackBar";
-import { ProgressBar } from "../components/ui/ProgressBar";
+} from '@/app/components/ui/tooltip';
+import { TrackBookPagesDTO } from '@/shared/dtos/trackDTO';
+import Link from 'next/link';
+import { TrackBar } from '../components/track/TrackBar';
+import { ProgressBar } from '../components/ui/ProgressBar';
 
 interface Props {
   track: TrackBookPagesDTO;
@@ -26,14 +26,14 @@ export function BookTrackItem({ track }: Props) {
       <Tooltip>
         <TooltipTrigger className="w-full">
           <Link
-            href={"/" + track.id}
-            className={`w-full flex flex-col gap-1 p-2 hover:bg-secondary rounded-md transition m-1 ${
-              track.isCompleted && "bg-green-100"
+            href={'/' + track.id}
+            className={`m-1 flex w-full flex-col gap-1 rounded-md p-2 transition hover:bg-secondary ${
+              track.isCompleted && 'bg-green-100'
             }`}
           >
-            <header className="flex justify-between items-center">
-              <p className="font-bold text-sm">{track.book.title}</p>
-              <p className="text-xs rounded-lg bg-secondary p-2 font-bold">
+            <header className="flex items-center justify-between">
+              <p className="text-sm font-bold">{track.book.title}</p>
+              <p className="rounded-lg bg-secondary p-2 text-xs font-bold">
                 {completedPercentage}%
               </p>
             </header>

@@ -1,4 +1,4 @@
-import { BookGenresDTO } from "@/shared/dtos/bookDTO";
+import { BookGenresDTO } from '@/shared/dtos/bookDTO';
 
 export interface BookService {
   getAll: (props: GetAllParams) => Promise<BookGenresDTO[]>;
