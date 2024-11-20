@@ -16,8 +16,11 @@ export default function Page() {
     (acc, curr) => curr.pagesRead + acc,
     0
   );
+  console.log({ totalPagesRead });
 
   const [pagesCount, setPagesCount] = useState<number>(totalPagesRead);
+
+  console.log({ pagesCount });
 
   const handleIncreasePage = () => {
     if (pagesCount >= track.book.totalPages) return;

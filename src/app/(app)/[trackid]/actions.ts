@@ -57,3 +57,19 @@ export const toggleCompleteAction = createServerAction()
     }
     revalidatePath("/" + input.trackId, "layout");
   });
+
+export const deleteSessionAction = createServerAction()
+  .input(
+    z.object({
+      sessionId: z.string(),
+      trackId: z.string(),
+    })
+  )
+  .handler(async ({ input }) => {
+    try {
+      await sessionService.delete({ id: input.sessionId });
+    } catch (error) {
+      console.log(error);
+    }
+    revalidatePath("/" + input.trackId, "layout");
+  });
