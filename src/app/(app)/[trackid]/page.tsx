@@ -1,6 +1,7 @@
 "use client";
 
-import { ProgressBar, TrackBar } from "@/app/components/track/TrackBar";
+import { TrackBar } from "@/app/components/track/TrackBar";
+import { ProgressBar } from "@/app/components/ui/ProgressBar";
 import moment from "moment";
 import { useState } from "react";
 import { useTracker } from "../hooks/useTracker";
@@ -23,7 +24,7 @@ export default function Page() {
   };
 
   const handleDecreasePage = () => {
-    if (pagesCount <= track.book.totalPages) return;
+    if (pagesCount <= totalPagesRead) return;
     setPagesCount(pagesCount - 1);
   };
 
@@ -49,7 +50,10 @@ export default function Page() {
         <p>{completedPercentage}%</p>
         <TrackBar>
           <ProgressBar percentaje={completedPercentage} />
-          <ProgressBar percentaje={futureCompletedPercentage} />
+          <ProgressBar
+            percentaje={futureCompletedPercentage}
+            variant={"future"}
+          />
         </TrackBar>
         <p>{pagesLeft} Pages left</p>
       </section>

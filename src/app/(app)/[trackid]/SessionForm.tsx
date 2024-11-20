@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/app/components/ui/button";
+import { nanoid } from "nanoid";
 import { toast } from "sonner";
 import { useServerAction } from "zsa-react";
 import { useTracker } from "../hooks/useTracker";
@@ -34,13 +35,13 @@ export function SessionForm({
     addSession({
       ...track,
       sessions: [
+        ...track.sessions,
         {
           pagesRead: pagesReadDuringThisSession,
           createdAt: new Date().toString(),
           content: "nueva session",
-          id: "asdsagdasdg",
+          id: nanoid(),
         },
-        ...track.sessions,
       ],
     });
     execute({

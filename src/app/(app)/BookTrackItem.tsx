@@ -7,6 +7,7 @@ import {
 import { TrackBookDTO } from "@/shared/dtos/trackDTO";
 import Link from "next/link";
 import { TrackBar } from "../components/track/TrackBar";
+import { ProgressBar } from "../components/ui/ProgressBar";
 
 interface Props {
   track: TrackBookDTO;
@@ -34,7 +35,9 @@ export function BookTrackItem({ track }: Props) {
                 {completedPercentage}%
               </p>
             </header>
-            <TrackBar completedPercentage={completedPercentage} />
+            <TrackBar>
+              <ProgressBar percentaje={completedPercentage} />
+            </TrackBar>
           </Link>
         </TooltipTrigger>
         <TooltipContent>
