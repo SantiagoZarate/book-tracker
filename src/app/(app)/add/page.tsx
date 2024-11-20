@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Suspense } from "react";
 import { BooksList } from "./BooksList";
 import { Loader } from "./Loader";
@@ -15,6 +16,12 @@ export default async function Page({ searchParams }: Props) {
   return (
     <section className="flex flex-col gap-4 pt-4">
       <Search />
+      <p className="text-xs text-center">
+        The book you&apos;re looking for is not here?{" "}
+        <Link href="/create" className="font-bold hover:underline">
+          add it yourself!
+        </Link>
+      </p>
       <Suspense fallback={<Loader />}>
         <BooksList query={query} />
       </Suspense>
