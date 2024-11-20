@@ -4,13 +4,13 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/app/components/ui/tooltip";
-import { TrackBookDTO } from "@/shared/dtos/trackDTO";
+import { TrackBookPagesDTO } from "@/shared/dtos/trackDTO";
 import Link from "next/link";
 import { TrackBar } from "../components/track/TrackBar";
 import { ProgressBar } from "../components/ui/ProgressBar";
 
 interface Props {
-  track: TrackBookDTO;
+  track: TrackBookPagesDTO;
 }
 
 export function BookTrackItem({ track }: Props) {
@@ -27,7 +27,9 @@ export function BookTrackItem({ track }: Props) {
         <TooltipTrigger>
           <Link
             href={"/" + track.id}
-            className="flex flex-col gap-1 p-2 hover:bg-secondary rounded-md transition m-1"
+            className={`flex flex-col gap-1 p-2 hover:bg-secondary rounded-md transition m-1 ${
+              track.isCompleted && "bg-green-100"
+            }`}
           >
             <header className="flex justify-between items-center">
               <p className="font-bold text-sm">{track.book.title}</p>

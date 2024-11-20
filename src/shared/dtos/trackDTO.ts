@@ -21,6 +21,12 @@ export const trackBookSchemaDTO = trackSchemaDTO
 
 export type TrackBookDTO = z.infer<typeof trackBookSchemaDTO>;
 
+export const trackBookPagesReadSchemDTO = trackBookSchemaDTO.extend({
+  pagesAlreadyRead: z.number(),
+});
+
+export type TrackBookPagesDTO = z.infer<typeof trackBookPagesReadSchemDTO>;
+
 export const trackBookSessionsSchemaDTO = trackBookSchemaDTO.extend({
   sessions: z.array(
     sessionSchemaDTO.omit({

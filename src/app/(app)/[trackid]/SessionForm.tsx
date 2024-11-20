@@ -29,9 +29,9 @@ export function SessionForm({
     },
   });
 
-  const handleAddSession = async () => {
-    const pagesReadDuringThisSession = pagesCount - initialPages;
+  const pagesReadDuringThisSession = pagesCount - initialPages;
 
+  const handleAddSession = async () => {
     addSession({
       ...track,
       sessions: [
@@ -52,7 +52,14 @@ export function SessionForm({
 
   return (
     <section>
-      <header>Add Session</header>
+      <header className="flex items-baseline gap-2">
+        <p>Add Session</p>
+        {pagesCount !== initialPages && (
+          <p className="opacity-50 text-xs">
+            {pagesReadDuringThisSession} pages read during this session
+          </p>
+        )}
+      </header>
       <section className="">
         <form className="flex items-center gap-2" action={handleAddSession}>
           <section className="flex-1 flex bg-input divide-x divide-primary rounded-lg overflow-hidden">
