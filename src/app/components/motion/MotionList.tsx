@@ -22,7 +22,13 @@ const variants: Variants = {
       staggerChildren: 0.05,
     },
   },
-  exit: {},
+  exit: {
+    transition: {
+      type: 'spring',
+      bounce: 0,
+      duration: 0.3,
+    },
+  },
 };
 
 export function MotionList({ ...args }: Props) {

@@ -27,15 +27,13 @@ const itemVariants: Variants = {
 
 type Props = HTMLMotionProps<'li'>;
 
-export const MotionListItem = forwardRef<HTMLLIElement, Props>(
-  ({ ...args }, ref) => (
-    <motion.li
-      ref={ref}
-      className={cn(args.className)}
-      variants={itemVariants}
-      {...args}
-    />
-  ),
-);
+export const MotionListItem = forwardRef<HTMLLIElement, Props>((args, ref) => (
+  <motion.li
+    className={cn(args.className)}
+    variants={itemVariants}
+    ref={ref}
+    {...args}
+  />
+));
 
 MotionListItem.displayName = 'MotionListItem';
