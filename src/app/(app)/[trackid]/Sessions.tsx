@@ -15,7 +15,7 @@ export function Sessions() {
   }
 
   return (
-    <ul>
+    <ul className="p-4">
       {sessions.map((session) => (
         <li key={session.id}>
           <p>{session.pagesRead}</p>

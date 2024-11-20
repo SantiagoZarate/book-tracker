@@ -53,7 +53,7 @@ export function SessionForm({
   };
 
   return (
-    <section>
+    <section className="p-4">
       <header className="flex items-baseline gap-2">
         <p>Add Session</p>
         <AnimatePresence>

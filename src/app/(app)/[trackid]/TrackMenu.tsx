@@ -14,7 +14,7 @@ import { DeleteButton } from "./DeleteButton";
 export function TrackMenu() {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
+      <DropdownMenuTrigger asChild>
         <Button variant={"icon"}>
           <ChevronDownMicroIcon />
         </Button>

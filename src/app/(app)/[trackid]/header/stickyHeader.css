@@ -1,0 +1,19 @@
+.sticky-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  opacity: 0;
+  animation: show-header;
+  animation-timeline: scroll();
+  animation-range: 10px;
+  backdrop-filter: blur(20px);
+  z-index: 100;
+  pointer-events: none;
+}
+
+@keyframes show-header {
+  to {
+    opacity: 100%;
+    pointer-events: initial;
+  }
+}
