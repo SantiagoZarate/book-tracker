@@ -29,6 +29,15 @@ const trackService = {
     const data = await trackRepository.delete(id);
     return data;
   },
+  async toggleComplete(id: TrackSelect) {
+    const data = await trackRepository.getOne(id);
+
+    if (!data) {
+      throw new Error("Track not found");
+    }
+
+    await trackRepository.toggleCompleteState(id, data.isCompleted);
+  },
 };
 
 export { trackService };

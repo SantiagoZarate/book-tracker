@@ -1,6 +1,5 @@
 "use client";
 
-import { XMarkMicroIcon } from "@/app/components/icons/XMarkMicroIcon";
 import { Button } from "@/app/components/ui/button";
 import {
   Dialog,
@@ -26,10 +25,8 @@ export function DeleteButton() {
 
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="outline">
-          <XMarkMicroIcon />
-        </Button>
+      <DialogTrigger className="flex items-center p-1 text-sm hover:bg-secondary transition w-full rounded-sm">
+        Delete track
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>

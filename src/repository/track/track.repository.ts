@@ -40,6 +40,14 @@ const trackRepository: TrackRepository = {
     const data = await db.delete(trackSchema).where(eq(trackSchema.id, id));
     return data.rowsAffected === 1;
   },
+  async toggleCompleteState({ id }, completed) {
+    const data = await db
+      .update(trackSchema)
+      .set({ isCompleted: !completed })
+      .where(eq(trackSchema.id, id));
+
+    return data.rowsAffected === 1;
+  },
 };
 
 export { trackRepository };

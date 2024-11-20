@@ -6,4 +6,8 @@ export interface TrackRepository {
   create: (payload: TrackInsert) => Promise<TrackSelect>;
   getOne: (id: TrackSelect) => Promise<TrackBookSessionsDTO>;
   delete: (id: TrackSelect) => Promise<boolean>;
+  toggleCompleteState: (
+    id: TrackSelect,
+    currentState: boolean
+  ) => Promise<boolean>;
 }

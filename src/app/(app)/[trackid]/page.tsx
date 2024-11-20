@@ -5,9 +5,10 @@ import { ProgressBar } from "@/app/components/ui/ProgressBar";
 import moment from "moment";
 import { useState } from "react";
 import { useTracker } from "../hooks/useTracker";
-import { DeleteButton } from "./DeleteButton";
+import { CompleteBanner } from "./CompleteBanner";
 import { SessionForm } from "./SessionForm";
 import { Sessions } from "./Sessions";
+import { TrackMenu } from "./TrackMenu";
 
 export default function Page() {
   const { track } = useTracker();
@@ -42,9 +43,14 @@ export default function Page() {
 
   return (
     <section className="p-2 flex flex-col gap-4">
-      <header>
-        <p className="text-3xl font-semibold">{track.book.title}</p>
-        <p className="text-sm">{moment().from(track.startedAt)}</p>
+      <header className="flex gap-2">
+        <section className="flex-1">
+          <p className="text-3xl font-semibold">{track.book.title}</p>
+          <p className="text-sm">{moment().from(track.startedAt)}</p>
+        </section>
+        <section>
+          <TrackMenu />
+        </section>
       </header>
       <section className="flex flex-col items-end">
         <p>{completedPercentage}%</p>
@@ -57,16 +63,17 @@ export default function Page() {
         </TrackBar>
         <p>{pagesLeft} Pages left</p>
       </section>
-      <section>
-        <DeleteButton />
-      </section>
-      <SessionForm
-        totalPages={track.book.totalPages}
-        onDecreasePage={handleDecreasePage}
-        onIncreasePage={handleIncreasePage}
-        initialPages={totalPagesRead}
-        pagesCount={pagesCount}
-      />
+      {track.isCompleted ? (
+        <CompleteBanner />
+      ) : (
+        <SessionForm
+          totalPages={track.book.totalPages}
+          onDecreasePage={handleDecreasePage}
+          onIncreasePage={handleIncreasePage}
+          initialPages={totalPagesRead}
+          pagesCount={pagesCount}
+        />
+      )}
       <Sessions />
     </section>
   );

@@ -40,5 +40,20 @@ export const addSessionAction = createServerAction()
     } catch (error) {
       console.log(error);
     }
-    // revalidatePath("/" + input.trackId, "layout");
+    revalidatePath("/" + input.trackId, "layout");
+  });
+
+export const toggleCompleteAction = createServerAction()
+  .input(
+    z.object({
+      trackId: z.string(),
+    })
+  )
+  .handler(async ({ input }) => {
+    try {
+      await trackService.toggleComplete({ id: input.trackId });
+    } catch (error) {
+      console.log(error);
+    }
+    revalidatePath("/" + input.trackId, "layout");
   });
