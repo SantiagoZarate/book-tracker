@@ -1,4 +1,5 @@
 import { ChevronDownMicroIcon } from "@/app/components/icons/ChevronDownMicroIcon";
+import { Button } from "@/app/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,8 +14,10 @@ import { DeleteButton } from "./DeleteButton";
 export function TrackMenu() {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="border rounded-full p-1 hover:bg-input transition">
-        <ChevronDownMicroIcon />
+      <DropdownMenuTrigger>
+        <Button variant={"icon"}>
+          <ChevronDownMicroIcon />
+        </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel>Settings</DropdownMenuLabel>

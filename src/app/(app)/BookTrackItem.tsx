@@ -24,10 +24,10 @@ export function BookTrackItem({ track }: Props) {
   return (
     <TooltipProvider delayDuration={0}>
       <Tooltip>
-        <TooltipTrigger>
+        <TooltipTrigger className="w-full">
           <Link
             href={"/" + track.id}
-            className={`flex flex-col gap-1 p-2 hover:bg-secondary rounded-md transition m-1 ${
+            className={`w-full flex flex-col gap-1 p-2 hover:bg-secondary rounded-md transition m-1 ${
               track.isCompleted && "bg-green-100"
             }`}
           >

@@ -1,8 +1,11 @@
 "use client";
 
+import { BackArrowMicroIcon } from "@/app/components/icons/BackArrowMicroIcon";
 import { TrackBar } from "@/app/components/track/TrackBar";
+import { Button } from "@/app/components/ui/button";
 import { ProgressBar } from "@/app/components/ui/ProgressBar";
 import moment from "moment";
+import Link from "next/link";
 import { useState } from "react";
 import { useTracker } from "../hooks/useTracker";
 import { CompleteBanner } from "./CompleteBanner";
@@ -42,13 +45,18 @@ export default function Page() {
   const pagesLeft = track.book.totalPages - totalPagesRead;
 
   return (
-    <section className="p-2 flex flex-col gap-4">
-      <header className="flex gap-2">
-        <section className="flex-1">
-          <p className="text-3xl font-semibold">{track.book.title}</p>
-          <p className="text-sm">{moment().from(track.startedAt)}</p>
-        </section>
-        <section>
+    <section className="p-4 flex flex-col gap-4">
+      <header className="flex flex-col gap-8">
+        <Button variant={"icon"}>
+          <Link href={"/"}>
+            <BackArrowMicroIcon />
+          </Link>
+        </Button>
+        <section className="flex gap-2">
+          <section className="flex-1">
+            <p className="text-3xl font-semibold">{track.book.title}</p>
+            <p className="text-sm">{moment().from(track.startedAt)}</p>
+          </section>
           <TrackMenu />
         </section>
       </header>

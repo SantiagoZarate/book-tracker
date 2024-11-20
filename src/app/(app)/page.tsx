@@ -1,4 +1,6 @@
 import { trackService } from "@/services/track/track.service";
+import { MotionList } from "../components/motion/MotionList";
+import { MotionListItem } from "../components/motion/MotionListItem";
 import { BookTrackItem } from "./BookTrackItem";
 
 export default async function page() {
@@ -11,11 +13,13 @@ export default async function page() {
       </header>
       <section>
         <p>Tracks Lists</p>
-        <ul className="flex flex-col divide-y">
+        <MotionList className="flex flex-col divide-y">
           {tracks.map((track) => (
-            <BookTrackItem key={track.id} track={track} />
+            <MotionListItem key={track.id}>
+              <BookTrackItem track={track} />
+            </MotionListItem>
           ))}
-        </ul>
+        </MotionList>
       </section>
     </section>
   );
