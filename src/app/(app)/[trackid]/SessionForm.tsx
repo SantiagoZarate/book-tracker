@@ -1,6 +1,8 @@
 "use client";
 
 import { Button } from "@/app/components/ui/button";
+import { fadeInAndOut } from "@/app/lib/motion-animations";
+import { AnimatePresence, motion } from "framer-motion";
 import { nanoid } from "nanoid";
 import { toast } from "sonner";
 import { useServerAction } from "zsa-react";
@@ -54,11 +56,13 @@ export function SessionForm({
     <section>
       <header className="flex items-baseline gap-2">
         <p>Add Session</p>
-        {pagesCount !== initialPages && (
-          <p className="opacity-50 text-xs">
-            {pagesReadDuringThisSession} pages read during this session
-          </p>
-        )}
+        <AnimatePresence>
+          {pagesCount !== initialPages && (
+            <motion.p {...fadeInAndOut} className="text-xs">
+              {pagesReadDuringThisSession} pages read during this session
+            </motion.p>
+          )}
+        </AnimatePresence>
       </header>
       <section className="">
         <form className="flex items-center gap-2" action={handleAddSession}>
