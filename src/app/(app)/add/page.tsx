@@ -13,12 +13,7 @@ export default async function Page({ searchParams }: Props) {
   const query = searchParams.search ?? "";
 
   return (
-    <section className="flex flex-col gap-12">
-      <section className="flex flex-col gap-4">
-        <header>
-          <p>Books List</p>
-        </header>
-      </section>
+    <section className="flex flex-col gap-4 pt-4">
       <Search />
       <Suspense fallback={<Loader />}>
         <BooksList query={query} />

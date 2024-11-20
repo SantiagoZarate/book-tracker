@@ -2,6 +2,7 @@
 
 import { cn } from "@/app/lib/utils";
 import { HTMLMotionProps, motion, Variants } from "framer-motion";
+import { forwardRef } from "react";
 
 const itemVariants: Variants = {
   visible: {
@@ -16,16 +17,25 @@ const itemVariants: Variants = {
     transition: { duration: 0.2 },
     filter: "blur(10px)",
   },
+  exit: {
+    opacity: 0,
+    y: 20,
+    transition: { duration: 0.2 },
+    filter: "blur(10px)",
+  },
 };
 
 type Props = HTMLMotionProps<"li">;
 
-export function MotionListItem({ ...args }: Props) {
-  return (
+export const MotionListItem = forwardRef<HTMLLIElement, Props>(
+  ({ ...args }, ref) => (
     <motion.li
+      ref={ref}
       className={cn(args.className)}
       variants={itemVariants}
       {...args}
     />
-  );
-}
+  )
+);
+
+MotionListItem.displayName = "MotionListItem";

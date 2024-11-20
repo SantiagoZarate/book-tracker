@@ -22,6 +22,7 @@ const variants: Variants = {
       staggerChildren: 0.05,
     },
   },
+  exit: {},
 };
 
 export function MotionList({ ...args }: Props) {
@@ -31,6 +32,7 @@ export function MotionList({ ...args }: Props) {
       variants={variants}
       animate="visible"
       initial="hidden"
+      exit="exit"
       {...args}
     />
   );

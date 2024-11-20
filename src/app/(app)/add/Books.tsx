@@ -4,9 +4,11 @@ import { MotionList } from "@/app/components/motion/MotionList";
 import { MotionListItem } from "@/app/components/motion/MotionListItem";
 import { Button } from "@/app/components/ui/button";
 import { BookGenresDTO } from "@/shared/dtos/bookDTO";
+import { AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
 import { useServerAction } from "zsa-react";
 import { addBookAction } from "./action";
+import { GenreList } from "./GenreList";
 
 interface Props {
   books: BookGenresDTO[];
@@ -21,32 +23,25 @@ export function Books({ books }: Props) {
 
   return (
     <MotionList className="flex flex-col divide-y overflow-hidden">
-      {books.map((book) => (
-        <MotionListItem key={book.id} className="p-2">
-          <section className="flex justify-between items-center w-full">
-            <section className="flex flex-col">
-              <p>{book.title}</p>
-              <ul className="flex gap-2">
-                {book.genres.map((genre) => (
-                  <li
-                    className="text-xs rounded-xl bg-card border border-border px-2 py-1"
-                    key={genre.name}
-                  >
-                    <p>{genre.name}</p>
-                  </li>
-                ))}
-              </ul>
+      <AnimatePresence mode="popLayout">
+        {books.map((book) => (
+          <MotionListItem layout key={book.id} className="p-2">
+            <section className="flex justify-between items-center w-full">
+              <section className="flex flex-col">
+                <p>{book.title}</p>
+                <GenreList genres={book.genres} />
+              </section>
+              <Button
+                disabled={isPending}
+                onClick={() => execute({ bookId: book.id })}
+                className="transition"
+              >
+                Add
+              </Button>
             </section>
-            <Button
-              disabled={isPending}
-              onClick={() => execute({ bookId: book.id })}
-              className="transition"
-            >
-              Add
-            </Button>
-          </section>
-        </MotionListItem>
-      ))}
+          </MotionListItem>
+        ))}
+      </AnimatePresence>
     </MotionList>
   );
 }
