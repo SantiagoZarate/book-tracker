@@ -1,4 +1,6 @@
+import { Suspense } from "react";
 import { BooksList } from "./BooksList";
+import { Loader } from "./Loader";
 import { Search } from "./Search";
 
 interface Props {
@@ -18,7 +20,9 @@ export default async function Page({ searchParams }: Props) {
         </header>
       </section>
       <Search />
-      <BooksList query={query} />
+      <Suspense fallback={<Loader />}>
+        <BooksList query={query} />
+      </Suspense>
     </section>
   );
 }

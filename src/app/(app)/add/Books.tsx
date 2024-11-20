@@ -1,5 +1,7 @@
 "use client";
 
+import { MotionList } from "@/app/components/motion/MotionList";
+import { MotionListItem } from "@/app/components/motion/MotionListItem";
 import { Button } from "@/app/components/ui/button";
 import { BookGenresDTO } from "@/shared/dtos/bookDTO";
 import { toast } from "sonner";
@@ -18,9 +20,9 @@ export function Books({ books }: Props) {
   });
 
   return (
-    <ul className="flex flex-col divide-y">
+    <MotionList className="flex flex-col divide-y overflow-hidden">
       {books.map((book) => (
-        <li key={book.id} className="p-2">
+        <MotionListItem key={book.id} className="p-2">
           <section className="flex justify-between items-center w-full">
             <section className="flex flex-col">
               <p>{book.title}</p>
@@ -43,8 +45,8 @@ export function Books({ books }: Props) {
               Add
             </Button>
           </section>
-        </li>
+        </MotionListItem>
       ))}
-    </ul>
+    </MotionList>
   );
 }
