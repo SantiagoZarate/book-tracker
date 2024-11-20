@@ -13,13 +13,11 @@ import {
 } from "@/app/components/ui/dialog";
 import { toast } from "sonner";
 import { useServerAction } from "zsa-react";
+import { useTracker } from "../hooks/useTracker";
 import { deleteTrackAction } from "./actions";
 
-interface Props {
-  id: string;
-}
-
-export function DeleteButton({ id }: Props) {
+export function DeleteButton() {
+  const { track } = useTracker();
   const { execute } = useServerAction(deleteTrackAction, {
     onSuccess() {
       toast("Book track deleted");
@@ -43,7 +41,7 @@ export function DeleteButton({ id }: Props) {
         </DialogHeader>
         <DialogFooter>
           <Button
-            onClick={() => execute({ trackId: id })}
+            onClick={() => execute({ trackId: track.id })}
             variant={"destructive"}
           >
             Delete

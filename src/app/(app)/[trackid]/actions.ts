@@ -1,5 +1,6 @@
 "use server";
 
+import { sessionService } from "@/services/session/sessionService";
 import { trackService } from "@/services/track/track.service";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -25,8 +26,19 @@ export const deleteTrackAction = createServerAction()
 export const addSessionAction = createServerAction()
   .input(
     z.object({
-      id: z.string(),
-      pages: z.coerce.number(),
+      trackId: z.string(),
+      pages: z.coerce.number().min(1, "Session must at least have one page"),
     })
   )
-  .handler(async () => {});
+  .handler(async ({ input }) => {
+    try {
+      await sessionService.create({
+        content: "",
+        pagesRead: input.pages,
+        trackId: input.trackId,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+    // revalidatePath("/" + input.trackId, "layout");
+  });

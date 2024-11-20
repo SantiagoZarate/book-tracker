@@ -7,4 +7,6 @@ export const sessionSchemaDTO = z.object({
   pagesRead: z.coerce.number(),
   createdAt: z.string(),
   trackId: z.string(),
-}) satisfies z.ZodType<SessionRAW>;
+}) satisfies z.ZodType<Omit<SessionRAW, "trackId">>;
+
+export type SessionDTO = z.infer<typeof sessionSchemaDTO>;
