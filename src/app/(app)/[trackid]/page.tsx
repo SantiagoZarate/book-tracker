@@ -3,7 +3,7 @@
 import { TrackBar } from "@/app/components/track/TrackBar";
 import { TrackHeader } from "@/app/components/track/TrackHeader";
 import { ProgressBar } from "@/app/components/ui/ProgressBar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTracker } from "../../hooks/useTracker";
 import { CompleteBanner } from "./CompleteBanner";
 import { StickyHeader } from "./header/StickyHeader";
@@ -16,9 +16,15 @@ export default function Page() {
     (acc, curr) => curr.pagesRead + acc,
     0
   );
-  console.log({ totalPagesRead });
 
   const [pagesCount, setPagesCount] = useState<number>(totalPagesRead);
+
+  // Not very proud of this
+  // Without it, when a session i deleted
+  // totalPagesRead and pagesCount get desynchronized
+  useEffect(() => {
+    setPagesCount(totalPagesRead);
+  }, [totalPagesRead]);
 
   console.log({ pagesCount });
 

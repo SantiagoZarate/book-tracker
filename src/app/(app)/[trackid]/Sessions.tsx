@@ -56,13 +56,11 @@ export function Sessions() {
               <p className="text-sm">{session.pagesRead} Pages</p>
               <p className="text-xs opacity-50">{session.createdAt}</p>
             </section>
-            <Button
-              onClick={() => handleDeleteSession(session.id)}
-              className="bg-background"
-              variant={"icon"}
-            >
-              <XMarkMicroIcon />
-            </Button>
+            <form action={() => handleDeleteSession(session.id)}>
+              <Button className="bg-background" variant={"icon"}>
+                <XMarkMicroIcon />
+              </Button>
+            </form>
           </li>
         ))}
       </ul>
