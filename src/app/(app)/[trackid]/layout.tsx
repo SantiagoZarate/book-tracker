@@ -1,6 +1,6 @@
 import { trackService } from "@/services/track/track.service";
 import { PropsWithChildren } from "react";
-import { TrackProvider } from "../provider/trackProvider";
+import { TrackProvider } from "../../provider/trackProvider";
 
 interface Props extends PropsWithChildren {
   params: {

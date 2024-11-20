@@ -1,6 +1,6 @@
 "use client";
 
-import { useTracker } from "../hooks/useTracker";
+import { useTracker } from "../../hooks/useTracker";
 
 export function Sessions() {
   const { track } = useTracker();

@@ -7,7 +7,7 @@ import { ProgressBar } from "@/app/components/ui/ProgressBar";
 import moment from "moment";
 import Link from "next/link";
 import { useState } from "react";
-import { useTracker } from "../hooks/useTracker";
+import { useTracker } from "../../hooks/useTracker";
 import { CompleteBanner } from "./CompleteBanner";
 import { SessionForm } from "./SessionForm";
 import { Sessions } from "./Sessions";

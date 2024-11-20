@@ -2,7 +2,7 @@
 
 import { toast } from "sonner";
 import { useServerAction } from "zsa-react";
-import { useTracker } from "../hooks/useTracker";
+import { useTracker } from "../../hooks/useTracker";
 import { toggleCompleteAction } from "./actions";
 
 export function CompleteTrackButton() {
