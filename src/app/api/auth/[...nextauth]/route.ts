@@ -11,12 +11,32 @@ const handler = NextAuth({
     newUser: '/',
     signIn: '/signin',
   },
+  callbacks: {
+    async signIn({ user, credentials }) {
+      if (credentials) {
+        console.log('RUNNING THE SIGNIN CALLBACK WITH CREDENTIALS');
+        return true;
+      }
+
+      const userExistsInDb = await userService.userExists(user!.email!);
+      if (!userExistsInDb) {
+        // Create user
+        await userService.register({
+          email: user!.email!,
+          password: 'SIGNED IN WITH PROVIDER',
+          username: user!.name!,
+        });
+      }
+      return true;
+    },
+  },
   providers: [
     GithubProvider({
       clientId: envs.auth.github.id,
       clientSecret: envs.auth.github.secret,
     }),
     CredentialsProvider({
+      // Name and credentials are used by the built in next auth page
       name: 'Credentials',
       credentials: {
         username: { label: 'Username', type: 'text', placeholder: 'John' },
@@ -27,27 +47,16 @@ const handler = NextAuth({
         },
       },
       async authorize(credentials) {
-        console.log('LOGIN!');
-        console.log({ credentials });
-
         const user = await userService.login({
           password: credentials!.password,
           username: credentials!.username,
         });
-        console.log({
-          user,
-        });
-
-        // const user = { id: '1', name: 'J Smith', email: 'jsmith@example.com' };
 
         if (user) {
-          // Any object returned will be saved in `user` property of the JWT
-          return user;
+          return { ...user, name: user.username };
         } else {
           return null;
         }
-        // If you return null then an error will be displayed advising the user to check their details.
-        // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
       },
     }),
     // GoogleProvider({

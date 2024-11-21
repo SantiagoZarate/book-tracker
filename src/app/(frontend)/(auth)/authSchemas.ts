@@ -20,6 +20,7 @@ export type LoginSchema = z.infer<typeof loginSchema>;
 
 export const signupSchema = loginSchema
   .extend({
+    email: z.string().email(),
     confirmPassword: z.string(),
   })
   .refine(({ confirmPassword, password }) => confirmPassword === password, {

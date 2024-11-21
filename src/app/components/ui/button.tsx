@@ -74,12 +74,17 @@ interface ProviderButtonProps extends ButtonProps {
   img: string;
 }
 
-export function ProviderButton({ provider, img }: ProviderButtonProps) {
+export function ProviderButton({
+  provider,
+  img,
+  ...args
+}: ProviderButtonProps) {
   return (
     <Button
       onClick={() => signIn(provider, { redirect: true, callbackUrl: '/' })}
       className="font-semibold capitalize"
       variant="secondary"
+      {...args}
     >
       <figure className="">
         <Image src={img} alt={`${provider} logo`} width={16} height={16} />

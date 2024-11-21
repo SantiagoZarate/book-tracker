@@ -1,6 +1,6 @@
 import { db } from '@/db/db';
 import { userSchema } from '@/db/schemas';
-import { UserInsert, UserRAW, UserSelect } from '@/types/user.type';
+import { UserRAW, UserRegister, UserSelect } from '@/types/user.type';
 import { eq } from 'drizzle-orm';
 
 class UserRepository {
@@ -20,12 +20,22 @@ class UserRepository {
     return data;
   }
 
-  async create(payload: UserInsert) {
+  async create(payload: UserRegister) {
+    console.log({ payload });
+
     const data = await db.insert(userSchema).values(payload).returning({
       id: userSchema.id,
     });
 
     return data[0];
+  }
+
+  async getByEmail(email: UserRAW['email']) {
+    const data = await db.query.userSchema.findFirst({
+      where: (table) => eq(table.email, email),
+    });
+
+    return data;
   }
 }
 

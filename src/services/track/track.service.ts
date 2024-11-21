@@ -22,6 +22,7 @@ const trackService = {
     return data;
   },
   async create(payload: TrackInsert) {
+    // const user = await getServerSession();
     const data = await trackRepository.create(payload);
     return data;
   },

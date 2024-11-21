@@ -4,12 +4,14 @@ import { Button } from '@/app/components/ui/button';
 import { Form } from '@/app/components/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { signIn } from 'next-auth/react';
+// import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { InputField } from '../InputField';
 import { type LoginSchema, loginSchema } from '../authSchemas';
 
 export function SignInForm() {
+  // const router = useRouter();
   const form = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -19,21 +21,21 @@ export function SignInForm() {
   });
 
   const handleSubmit = async (data: LoginSchema) => {
-    console.log({ data });
-    try {
-      signIn('credentials', {
-        redirect: false,
-        ...data,
-      })
-        .then(() => {
+    signIn('credentials', {
+      redirect: true,
+      ...data,
+    })
+      .then((response) => {
+        if (!response?.error) {
           toast('User logged in!');
-        })
-        .catch(() => {
+          // router.push('/');
+        } else {
           toast('Invalid credentials');
-        });
-    } catch (error) {
-      console.log(error);
-    }
+        }
+      })
+      .catch(() => {
+        toast('Invalid credentials');
+      });
   };
 
   return (

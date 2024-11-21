@@ -3,44 +3,36 @@
 import { Button } from '@/app/components/ui/button';
 import { Form } from '@/app/components/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
+import { useServerAction } from 'zsa-react';
 import { type SignUpSchema, signupSchema } from '../authSchemas';
 import { InputField } from '../InputField';
+import { registerUserAction } from './actions';
 
 export function SignUpForm() {
-  const router = useRouter();
   const form = useForm<SignUpSchema>({
     resolver: zodResolver(signupSchema),
     defaultValues: {
       password: '',
       username: '',
       confirmPassword: '',
+      email: '',
+    },
+  });
+
+  const { execute, isPending } = useServerAction(registerUserAction, {
+    onSuccess() {
+      toast('User registered');
+    },
+    onError({ err }) {
+      toast(err.data);
     },
   });
 
   const handleSubmit = async (data: SignUpSchema) => {
     console.log({ data });
-    try {
-      const response = await fetch('/api/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-      const json = await response.json();
-      if (!json.ok) {
-        toast('There was an error');
-        return;
-      }
-      toast('User registered');
-      router.push('/signin');
-    } catch (error) {
-      console.log(error);
-      toast('Invalid Credentials');
-    }
+    execute(data);
   };
 
   return (
@@ -50,13 +42,14 @@ export function SignUpForm() {
     >
       <Form {...form}>
         <InputField name="username" placeholder="John" />
+        <InputField name="email" placeholder="johndoe@example.com" />
         <InputField name="password" placeholder="******" type="password" />
         <InputField
           name="confirmPassword"
           placeholder="******"
           type="password"
         />
-        <Button>Sign in</Button>
+        <Button disabled={isPending}>Sign in</Button>
       </Form>
     </form>
   );

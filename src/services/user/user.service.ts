@@ -1,9 +1,9 @@
 import { userRepository } from '@/repository/user/user.repository';
-import { UserInsert } from '@/types/user.type';
+import { UserLogin, UserRegister } from '@/types/user.type';
 import bcrypt from 'bcrypt';
 
 const userService = {
-  async register(payload: UserInsert) {
+  async register(payload: UserRegister) {
     const userWithSameUsername = await userRepository.getByUsername(
       payload.username,
     );
@@ -17,11 +17,12 @@ const userService = {
     const result = await userRepository.create({
       password: hashedPassword,
       username: payload.username,
+      email: payload.email,
     });
 
     return result;
   },
-  async login(payload: UserInsert) {
+  async login(payload: UserLogin) {
     const user = await userRepository.getByUsername(payload.username);
 
     if (!user) {
@@ -38,6 +39,10 @@ const userService = {
     }
 
     return user;
+  },
+  async userExists(email: string) {
+    const user = await userRepository.getByEmail(email);
+    return user !== null;
   },
 };
 

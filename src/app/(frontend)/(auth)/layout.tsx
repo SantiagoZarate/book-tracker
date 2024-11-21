@@ -23,7 +23,11 @@ export default function AuthLayout({
         </section>
         <footer className="flex flex-col gap-2">
           <ProviderButton provider={'github'} img="/images/github-logo.png" />
-          <ProviderButton provider={'google'} img="/images/google-logo.png" />
+          <ProviderButton
+            provider={'google'}
+            img="/images/google-logo.png"
+            disabled
+          />
         </footer>
       </section>
     </section>
