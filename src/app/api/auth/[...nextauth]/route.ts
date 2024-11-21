@@ -19,6 +19,7 @@ const handler = NextAuth({
       }
 
       const userExistsInDb = await userService.userExists(user!.email!);
+
       if (!userExistsInDb) {
         // Create user
         await userService.register({

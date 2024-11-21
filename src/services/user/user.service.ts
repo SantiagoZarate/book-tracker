@@ -42,7 +42,8 @@ const userService = {
   },
   async userExists(email: string) {
     const user = await userRepository.getByEmail(email);
-    return user !== null;
+
+    return user !== undefined;
   },
 };
 
