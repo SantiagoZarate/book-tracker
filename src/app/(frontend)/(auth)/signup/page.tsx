@@ -11,49 +11,53 @@ import {
 } from '@/app/components/ui/form';
 import { Input } from '@/app/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { signIn } from 'next-auth/react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
+import { loginSchema } from '../signin/page';
 
-export const loginSchema = z.object({
-  username: z
-    .string()
-    .min(4, { message: 'Username must have at least 4 characters' })
-    .regex(/^[a-zA-Z0-9]+$/, {
-      message:
-        'Username must be alphanumerical and have no spaces or special characters',
-    }),
-  password: z
-    .string()
-    .min(8, { message: 'Password must be at least 8 characters' })
-    .regex(/^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$/, {
-      message: 'Password must be alphanumerical',
-    }),
-});
+const signupSchema = loginSchema
+  .extend({
+    confirmPassword: z.string(),
+  })
+  .refine(({ confirmPassword, password }) => confirmPassword === password, {
+    message: 'Confirm password must be identical to password',
+    path: ['confirmPassword'],
+  });
 
-type LoginSchema = z.infer<typeof loginSchema>;
+type SignUpSchema = z.infer<typeof signupSchema>;
 
-export default function Page() {
-  const form = useForm<LoginSchema>({
-    resolver: zodResolver(loginSchema),
+export default function SignUpPage() {
+  const router = useRouter();
+  const form = useForm<SignUpSchema>({
+    resolver: zodResolver(signupSchema),
     defaultValues: {
       password: '',
       username: '',
+      confirmPassword: '',
     },
   });
 
-  const handleSubmit = async (data: LoginSchema) => {
+  const handleSubmit = async (data: SignUpSchema) => {
     console.log({ data });
     try {
-      await signIn('credentials', {
-        redirect: false,
-        ...data,
+      const response = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
       });
-      toast('Invalid Credentials');
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      toast('User registered');
+      router.push('/signin');
     } catch (error) {
       console.log(error);
+      toast('Invalid Credentials');
     }
   };
 
@@ -91,11 +95,24 @@ export default function Page() {
               </FormItem>
             )}
           />
+          <FormField
+            control={form.control}
+            name="confirmPassword"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Confirm Password</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <Button>Sign in</Button>
         </Form>
       </form>
       <footer className="flex justify-center">
-        <Link href="/signup">You dont have an account? Sign up here!</Link>
+        <Link href="/signin">already have an account? Sign in here!</Link>
       </footer>
     </section>
   );

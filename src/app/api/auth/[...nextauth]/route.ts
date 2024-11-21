@@ -1,4 +1,5 @@
 import envs from '@/config/envs';
+import { userService } from '@/services/user/user.service';
 import NextAuth from 'next-auth';
 
 import CredentialsProvider from 'next-auth/providers/credentials';
@@ -25,11 +26,15 @@ const handler = NextAuth({
           placeholder: '******',
         },
       },
-      authorize(credentials, req) {
+      async authorize(credentials, req) {
         console.log({ credentials });
         console.log({ req });
 
-        const user = { id: '1', name: 'J Smith', email: 'jsmith@example.com' };
+        const user = await userService.login({
+          password: credentials!.password,
+          username: credentials!.username,
+        });
+        // const user = { id: '1', name: 'J Smith', email: 'jsmith@example.com' };
 
         if (user) {
           // Any object returned will be saved in `user` property of the JWT
