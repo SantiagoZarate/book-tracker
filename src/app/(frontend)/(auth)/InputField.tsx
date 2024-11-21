@@ -10,7 +10,7 @@ import {
 import { Input } from '@/app/components/ui/input';
 import { ComponentProps } from 'react';
 import { useFormContext } from 'react-hook-form';
-import { SignUpSchema } from './signup/SignUpForm';
+import { SignUpSchema } from './authSchemas';
 
 interface Props extends ComponentProps<'input'> {
   name: keyof SignUpSchema;

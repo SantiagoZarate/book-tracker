@@ -3,10 +3,10 @@
 import { Button } from '@/app/components/ui/button';
 import { Form } from '@/app/components/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
-import { SignUpSchema, signupSchema } from '../authSchemas';
+import { type SignUpSchema, signupSchema } from '../authSchemas';
 import { InputField } from '../InputField';
 
 export function SignUpForm() {

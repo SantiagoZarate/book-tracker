@@ -7,7 +7,7 @@ import { signIn } from 'next-auth/react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { InputField } from '../InputField';
-import { LoginSchema, loginSchema } from '../authSchemas';
+import { type LoginSchema, loginSchema } from '../authSchemas';
 
 export function SignInForm() {
   const form = useForm<LoginSchema>({

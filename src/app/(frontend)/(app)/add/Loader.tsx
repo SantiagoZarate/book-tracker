@@ -6,7 +6,7 @@ export function Loader() {
     <MotionList className="flex flex-col divide-y">
       {Array(8)
         .fill(1)
-        .map((n, idx) => (
+        .map((_, idx) => (
           <MotionListItem key={idx}>
             <Skeleton />
           </MotionListItem>
