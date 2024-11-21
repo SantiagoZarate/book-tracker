@@ -77,7 +77,7 @@ interface ProviderButtonProps extends ButtonProps {
 export function ProviderButton({ provider, img }: ProviderButtonProps) {
   return (
     <Button
-      onClick={() => signIn(provider)}
+      onClick={() => signIn(provider, { redirect: true, callbackUrl: '/' })}
       className="font-semibold capitalize"
       variant="secondary"
     >
