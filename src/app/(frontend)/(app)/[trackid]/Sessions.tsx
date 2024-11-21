@@ -5,6 +5,7 @@ import { XMarkMicroIcon } from '@/app/components/icons/XMarkMicroIcon';
 import { MotionList } from '@/app/components/motion/MotionList';
 import { MotionListItem } from '@/app/components/motion/MotionListItem';
 import { Button } from '@/app/components/ui/button';
+import { Section, SectionHeader } from '@/app/components/ui/section';
 import { AnimatePresence } from 'framer-motion';
 import { toast } from 'sonner';
 import { useServerAction } from 'zsa-react';
@@ -37,18 +38,12 @@ export function Sessions() {
   };
 
   return (
-    <section className="flex flex-col gap-2 p-2">
-      <header className="flex items-center gap-2">
-        <span>
-          <CalendarMicroIcon />
-        </span>
-        <section className="flex flex-col">
-          <p className="text-sm font-semibold capitalize">previous sessions</p>
-          <p className="text-xs opacity-50">
-            Check the historical log for this track
-          </p>
-        </section>
-      </header>
+    <Section>
+      <SectionHeader
+        description="Check the historical log for this track"
+        icon={<CalendarMicroIcon />}
+        title="previous sessions"
+      />
       <MotionList className="flex flex-col gap-1">
         <AnimatePresence mode="popLayout">
           {sessions.map((session) => (
@@ -70,6 +65,6 @@ export function Sessions() {
           ))}
         </AnimatePresence>
       </MotionList>
-    </section>
+    </Section>
   );
 }

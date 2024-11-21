@@ -1,6 +1,8 @@
 'use client';
 
+import { EditSquareMicroIcon } from '@/app/components/icons/EditSquareMicroIcon';
 import { Button } from '@/app/components/ui/button';
+import { Section, SectionHeader } from '@/app/components/ui/section';
 import { fadeInAndOut } from '@/app/lib/motion-animations';
 import { AnimatePresence, motion } from 'framer-motion';
 import { nanoid } from 'nanoid';
@@ -53,43 +55,46 @@ export function SessionForm({
   };
 
   return (
-    <section className="p-4">
-      <header className="flex items-baseline gap-2">
-        <p>Add Session</p>
+    <Section>
+      <SectionHeader
+        description="How many pages did you read?"
+        icon={<EditSquareMicroIcon />}
+        title="Add new session"
+      />
+      <form
+        className="relative flex items-center gap-2"
+        action={handleAddSession}
+      >
         <AnimatePresence>
           {pagesCount !== initialPages && (
-            <motion.p {...fadeInAndOut} className="text-xs">
+            <motion.p {...fadeInAndOut} className="absolute -bottom-4 text-xs">
               {pagesReadDuringThisSession} pages read during this session
             </motion.p>
           )}
         </AnimatePresence>
-      </header>
-      <section className="">
-        <form className="flex items-center gap-2" action={handleAddSession}>
-          <section className="flex flex-1 divide-x divide-primary overflow-hidden rounded-lg bg-input">
-            <button
-              type="button"
-              disabled={isPending || pagesCount === initialPages}
-              onClick={onDecreasePage}
-              className="aspect-square px-4 transition hover:bg-background disabled:bg-gray-400"
-            >
-              -
-            </button>
-            <p className="flex-1 p-2 text-center">{pagesCount}</p>
-            <button
-              type="button"
-              disabled={isPending || pagesCount === totalPages}
-              className="aspect-square px-4 transition hover:bg-background"
-              onClick={onIncreasePage}
-            >
-              +
-            </button>
-          </section>
-          <Button disabled={isPending || pagesCount === initialPages}>
-            Add session
-          </Button>
-        </form>
-      </section>
-    </section>
+        <section className="flex flex-1 divide-x divide-primary overflow-hidden rounded-lg bg-input">
+          <button
+            type="button"
+            disabled={isPending || pagesCount === initialPages}
+            onClick={onDecreasePage}
+            className="aspect-square px-4 transition hover:bg-background disabled:bg-gray-400"
+          >
+            -
+          </button>
+          <p className="flex-1 p-2 text-center">{pagesCount}</p>
+          <button
+            type="button"
+            disabled={isPending || pagesCount === totalPages}
+            className="aspect-square px-4 transition hover:bg-background"
+            onClick={onIncreasePage}
+          >
+            +
+          </button>
+        </section>
+        <Button disabled={isPending || pagesCount === initialPages}>
+          Add session
+        </Button>
+      </form>
+    </Section>
   );
 }

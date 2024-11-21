@@ -51,7 +51,7 @@ export default function Page() {
   const pagesLeft = track.book.totalPages - totalPagesRead;
 
   return (
-    <section className="relative flex flex-col">
+    <section className="relative flex flex-col gap-4">
       <StickyHeader />
       <TrackHeader />
       <section className="flex flex-col items-end p-4">
