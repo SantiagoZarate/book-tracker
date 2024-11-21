@@ -6,6 +6,7 @@ const envsSchema = z.object({
       id: z.string(),
       secret: z.string(),
     }),
+    secret: z.string(),
   }),
 });
 
@@ -17,6 +18,7 @@ const envs: EnvsType = {
       id: process.env.GITHUB_CLIENT_ID ?? '',
       secret: process.env.GITHUB_CLIENT_SECRET ?? '',
     },
+    secret: process.env.NEXTAUTH_SECRET ?? '',
   },
 };
 

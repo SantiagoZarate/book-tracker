@@ -28,7 +28,7 @@ export default function AuthLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <section className="mx-auto grid min-h-dvh max-w-screen-sm">
+        <section className="mx-auto grid min-h-dvh max-w-screen-sm content-center">
           {children}
         </section>
       </body>

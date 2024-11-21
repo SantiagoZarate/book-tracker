@@ -14,7 +14,7 @@ export function SidebarFooter() {
     <footer className="hidden sm:block">
       <p>{data.user?.name}</p>
       <Button
-        onClick={() => signOut({ redirect: true, callbackUrl: '/signup' })}
+        onClick={() => signOut({ redirect: true, callbackUrl: '/signin' })}
       >
         Sign out
       </Button>
