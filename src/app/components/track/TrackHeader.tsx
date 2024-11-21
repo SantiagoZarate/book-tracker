@@ -10,11 +10,11 @@ export function TrackHeader() {
 
   return (
     <header className="relative flex flex-col gap-8 p-4">
-      <Button className="absolute -top-8" variant={'icon'}>
-        <Link href={'/'}>
+      <Link className="absolute -top-8" href={'/'}>
+        <Button variant={'icon'}>
           <BackArrowMicroIcon />
-        </Link>
-      </Button>
+        </Button>
+      </Link>
       <section className="flex gap-2">
         <section className="flex-1">
           <p className="text-3xl font-semibold">{track.book.title}</p>
