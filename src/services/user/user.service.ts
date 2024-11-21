@@ -9,7 +9,7 @@ const userService = {
     );
 
     if (userWithSameUsername) {
-      throw new Error('Invalid credential');
+      throw new Error('Username already used');
     }
 
     const hashedPassword = await bcrypt.hash(payload.password, 8);
@@ -25,7 +25,7 @@ const userService = {
     const user = await userRepository.getByUsername(payload.username);
 
     if (!user) {
-      throw new Error('Invalid credentials');
+      throw new Error('There is no user with that name');
     }
 
     const hasSamePassword = await bcrypt.compare(

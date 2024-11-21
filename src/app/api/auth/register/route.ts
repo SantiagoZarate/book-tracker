@@ -10,9 +10,9 @@ export async function POST(request: Request) {
       password,
       username,
     });
+    return NextResponse.json({ message: 'success', data: result, ok: true });
   } catch (e) {
     console.log({ e });
+    return NextResponse.json({ message: e, ok: false });
   }
-
-  return NextResponse.json({ message: 'success', data: result });
 }
