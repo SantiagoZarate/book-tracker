@@ -23,12 +23,12 @@ export function Navbar() {
   const path = usePathname();
 
   return (
-    <nav className="flex w-full flex-col">
+    <nav className="flex w-full flex-col gap-1 p-1">
       {SIDEBAR_LINKS.map((link) => (
         <Link
           key={link.path}
           href={link.path}
-          className="group flex items-center gap-2 p-4 transition hover:bg-card sm:p-2"
+          className="group flex items-center gap-2 overflow-hidden rounded-sm p-4 transition hover:bg-secondary sm:p-2"
         >
           <section className="relative">
             <span className="opacity-0">
