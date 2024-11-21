@@ -32,9 +32,13 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <section className="mx-auto grid min-h-dvh max-w-screen-sm grid-cols-[auto_1fr]">
+          {/* BACKGROUND COLOR */}
+          <div className="fixed inset-0 grid grid-cols-2">
+            <div className="bg-secondary" />
+          </div>
+          <section className="relative mx-auto grid min-h-dvh max-w-screen-sm grid-cols-[auto_1fr]">
             <Sidebar />
-            <main className="">{children}</main>
+            <main className="bg-background pt-16">{children}</main>
           </section>
           <Toaster />
         </body>

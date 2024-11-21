@@ -3,6 +3,7 @@
 import { TrackBar } from '@/app/components/track/TrackBar';
 import { TrackHeader } from '@/app/components/track/TrackHeader';
 import { ProgressBar } from '@/app/components/ui/ProgressBar';
+import { Section } from '@/app/components/ui/section';
 import { useEffect, useState } from 'react';
 import { useTracker } from '../../../hooks/useTracker';
 import { CompleteBanner } from './CompleteBanner';
@@ -51,10 +52,10 @@ export default function Page() {
   const pagesLeft = track.book.totalPages - totalPagesRead;
 
   return (
-    <section className="relative flex flex-col gap-4">
+    <section className="relative flex flex-col gap-4 pb-20">
       <StickyHeader />
       <TrackHeader />
-      <section className="flex flex-col items-end p-4">
+      <Section className="items-end">
         <p>{completedPercentage}%</p>
         <TrackBar>
           <ProgressBar percentaje={completedPercentage} />
@@ -64,19 +65,23 @@ export default function Page() {
           />
         </TrackBar>
         <p>{pagesLeft} Pages left</p>
-      </section>
-      {track.isCompleted ? (
-        <CompleteBanner />
-      ) : (
-        <SessionForm
-          totalPages={track.book.totalPages}
-          onDecreasePage={handleDecreasePage}
-          onIncreasePage={handleIncreasePage}
-          initialPages={totalPagesRead}
-          pagesCount={pagesCount}
-        />
-      )}
-      <Sessions />
+      </Section>
+      <Section>
+        {track.isCompleted ? (
+          <CompleteBanner />
+        ) : (
+          <SessionForm
+            totalPages={track.book.totalPages}
+            onDecreasePage={handleDecreasePage}
+            onIncreasePage={handleIncreasePage}
+            initialPages={totalPagesRead}
+            pagesCount={pagesCount}
+          />
+        )}
+      </Section>
+      <Section>
+        <Sessions />
+      </Section>
     </section>
   );
 }

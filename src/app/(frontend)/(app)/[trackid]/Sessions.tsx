@@ -5,8 +5,9 @@ import { XMarkMicroIcon } from '@/app/components/icons/XMarkMicroIcon';
 import { MotionList } from '@/app/components/motion/MotionList';
 import { MotionListItem } from '@/app/components/motion/MotionListItem';
 import { Button } from '@/app/components/ui/button';
-import { Section, SectionHeader } from '@/app/components/ui/section';
+import { SectionHeader } from '@/app/components/ui/section';
 import { AnimatePresence } from 'framer-motion';
+import moment from 'moment';
 import { toast } from 'sonner';
 import { useServerAction } from 'zsa-react';
 import { useTracker } from '../../../hooks/useTracker';
@@ -23,8 +24,10 @@ export function Sessions() {
 
   if (sessions.length === 0) {
     return (
-      <section className="flex w-full items-center justify-center rounded-lg bg-secondary p-8">
-        There are no sessions for this track
+      <section className="relative flex w-full items-center justify-center overflow-hidden rounded-lg border-4 border-border bg-secondary p-8 shadow-lg">
+        <p className="text-xs font-bold capitalize opacity-65">
+          There are no sessions for this track
+        </p>
       </section>
     );
   }
@@ -38,7 +41,7 @@ export function Sessions() {
   };
 
   return (
-    <Section>
+    <>
       <SectionHeader
         description="Check the historical log for this track"
         icon={<CalendarMicroIcon />}
@@ -54,7 +57,12 @@ export function Sessions() {
             >
               <section className="flex flex-col gap-1">
                 <p className="text-sm">{session.pagesRead} Pages</p>
-                <p className="text-xs opacity-50">{session.createdAt}</p>
+                <footer className="flex divide-x opacity-50 [&>:first-child]:pr-2 [&>:last-child]:pl-2">
+                  <p className="text-xs">{session.createdAt}</p>
+                  <p className="text-xs">
+                    {moment(session.createdAt).subtract(3, 'hours').fromNow()}
+                  </p>
+                </footer>
               </section>
               <form action={() => handleDeleteSession(session.id)}>
                 <Button className="bg-background" variant={'icon'}>
@@ -65,6 +73,6 @@ export function Sessions() {
           ))}
         </AnimatePresence>
       </MotionList>
-    </Section>
+    </>
   );
 }

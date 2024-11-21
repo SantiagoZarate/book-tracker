@@ -2,7 +2,7 @@
 
 import { EditSquareMicroIcon } from '@/app/components/icons/EditSquareMicroIcon';
 import { Button } from '@/app/components/ui/button';
-import { Section, SectionHeader } from '@/app/components/ui/section';
+import { SectionHeader } from '@/app/components/ui/section';
 import { fadeInAndOut } from '@/app/lib/motion-animations';
 import { AnimatePresence, motion } from 'framer-motion';
 import { nanoid } from 'nanoid';
@@ -55,7 +55,7 @@ export function SessionForm({
   };
 
   return (
-    <Section>
+    <>
       <SectionHeader
         description="How many pages did you read?"
         icon={<EditSquareMicroIcon />}
@@ -95,6 +95,6 @@ export function SessionForm({
           Add session
         </Button>
       </form>
-    </Section>
+    </>
   );
 }

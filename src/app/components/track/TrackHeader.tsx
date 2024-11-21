@@ -9,8 +9,8 @@ export function TrackHeader() {
   const { track } = useTracker();
 
   return (
-    <header className="flex flex-col gap-8 p-4">
-      <Button variant={'icon'}>
+    <header className="relative flex flex-col gap-8 p-4">
+      <Button className="absolute -top-8" variant={'icon'}>
         <Link href={'/'}>
           <BackArrowMicroIcon />
         </Link>

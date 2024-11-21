@@ -7,7 +7,7 @@ export function Section({ className, ...args }: ComponentProps<'section'>) {
   );
 }
 
-interface SectionHeaderProps {
+interface SectionHeaderProps extends ComponentProps<'header'> {
   icon: JSX.Element;
   title: string;
   description: string;
@@ -17,9 +17,11 @@ export function SectionHeader({
   description,
   icon,
   title,
+  className,
+  ...args
 }: SectionHeaderProps) {
   return (
-    <header className="flex items-center gap-2">
+    <header className={cn('flex items-center gap-2', className)} {...args}>
       <span>{icon}</span>
       <section className="flex flex-col">
         <p className="text-sm font-semibold capitalize">{title}</p>

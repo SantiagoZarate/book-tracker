@@ -1,3 +1,5 @@
+import { QueueListMicroIcon } from '@/app/components/icons/QueueListMicroIcon';
+import { SectionHeader } from '@/app/components/ui/section';
 import { trackService } from '@/services/track/track.service';
 import Link from 'next/link';
 import { MotionList } from '../../components/motion/MotionList';
@@ -8,12 +10,14 @@ export default async function page() {
   const tracks = await trackService.getAll();
 
   return (
-    <section className="flex flex-col gap-8">
-      <header>
-        <p>HOME</p>
-      </header>
+    <section className="flex flex-col gap-2">
+      <SectionHeader
+        className="p-2"
+        description="Keep track of your progress"
+        icon={<QueueListMicroIcon />}
+        title="Track lists"
+      />
       <section>
-        <p>Tracks Lists</p>
         {tracks.length === 0 ? (
           <Link href={'/add'} className="group">
             <section className="m-2 flex items-center justify-center rounded-sm bg-secondary py-24 transition group-hover:-translate-y-1">
