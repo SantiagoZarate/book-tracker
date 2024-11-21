@@ -2,6 +2,7 @@ import { relations, sql } from 'drizzle-orm';
 import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 import { nanoid } from 'nanoid';
 import { bookSchema } from './book-track.schema';
+import { userSchema } from './user.schema';
 
 export const trackSchema = sqliteTable('track', {
   id: text('id')
@@ -17,6 +18,9 @@ export const trackSchema = sqliteTable('track', {
   bookId: text('book_id')
     .notNull()
     .references(() => bookSchema.id, { onDelete: 'cascade' }),
+  userId: text('user_id')
+    .notNull()
+    .references(() => userSchema.id, { onDelete: 'cascade' }),
 });
 
 export const commentSchema = sqliteTable('comment', {
@@ -52,6 +56,10 @@ export const trackRelations = relations(trackSchema, ({ one, many }) => ({
   book: one(bookSchema, {
     fields: [trackSchema.bookId],
     references: [bookSchema.id],
+  }),
+  user: one(userSchema, {
+    fields: [trackSchema.userId],
+    references: [userSchema.id],
   }),
   comments: many(commentSchema),
   sessions: many(sessionSchema),
