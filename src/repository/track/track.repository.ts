@@ -18,12 +18,17 @@ const trackRepository: TrackRepository = {
   },
   async getOne({ id }) {
     const data = await db.query.trackSchema.findFirst({
-      where: (table) => eq(table.id, id!),
+      where: (table) => eq(table.id, id),
       with: {
         book: true,
-        sessions: true,
+        sessions: {
+          columns: {
+            trackId: false,
+          },
+        },
       },
     });
+
     return trackBookSessionsSchemaDTO.parse(data);
   },
   async create(payload) {

@@ -12,7 +12,7 @@ import {
 } from '@/app/components/ui/dialog';
 import { toast } from 'sonner';
 import { useServerAction } from 'zsa-react';
-import { useTracker } from '../../hooks/useTracker';
+import { useTracker } from '../../../hooks/useTracker';
 import { deleteTrackAction } from './actions';
 
 export function DeleteButton() {

@@ -1,7 +1,7 @@
 import { trackService } from '@/services/track/track.service';
 import Link from 'next/link';
-import { MotionList } from '../components/motion/MotionList';
-import { MotionListItem } from '../components/motion/MotionListItem';
+import { MotionList } from '../../components/motion/MotionList';
+import { MotionListItem } from '../../components/motion/MotionListItem';
 import { BookTrackItem } from './BookTrackItem';
 
 export default async function page() {

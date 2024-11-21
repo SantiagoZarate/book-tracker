@@ -8,7 +8,7 @@ import { Button } from '@/app/components/ui/button';
 import { AnimatePresence } from 'framer-motion';
 import { toast } from 'sonner';
 import { useServerAction } from 'zsa-react';
-import { useTracker } from '../../hooks/useTracker';
+import { useTracker } from '../../../hooks/useTracker';
 import { deleteSessionAction } from './actions';
 
 export function Sessions() {

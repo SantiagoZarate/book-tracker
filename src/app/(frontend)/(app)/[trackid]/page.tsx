@@ -4,7 +4,7 @@ import { TrackBar } from '@/app/components/track/TrackBar';
 import { TrackHeader } from '@/app/components/track/TrackHeader';
 import { ProgressBar } from '@/app/components/ui/ProgressBar';
 import { useEffect, useState } from 'react';
-import { useTracker } from '../../hooks/useTracker';
+import { useTracker } from '../../../hooks/useTracker';
 import { CompleteBanner } from './CompleteBanner';
 import { StickyHeader } from './header/StickyHeader';
 import { SessionForm } from './SessionForm';
