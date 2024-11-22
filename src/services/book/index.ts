@@ -1,9 +1,9 @@
 import { BookGenresDTO } from '@/shared/dtos/bookDTO';
-import { BookRAW } from '@/types/book.type';
+import { BookInsert, BookSelect } from '@/types/book.type';
 
 export interface BookService {
   getAll: (props: GetAllParams) => Promise<BookGenresDTO[]>;
-  bookExists: (title: BookRAW['title']) => Promise<boolean>;
+  create: (payload: BookInsert) => Promise<BookSelect>;
 }
 
 interface GetAllParams {

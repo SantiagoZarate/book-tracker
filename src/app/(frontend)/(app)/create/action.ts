@@ -1,19 +1,21 @@
 'use server';
 
-import { z } from 'zod';
-import { createServerAction } from 'zsa';
+import { booksService } from '@/services/book/book.service';
+import { createServerAction, ZSAError } from 'zsa';
 import { createBookSchema } from './bookSchema';
 
 export const createBookAction = createServerAction()
   .input(createBookSchema)
   .handler(async ({ input }) => {
-    await new Promise((resolve) => setTimeout(() => resolve(true), 2000));
-    console.log({ input });
-  });
-
-export const checkBookExistsAction = createServerAction()
-  .input(z.object({ title: z.string() }))
-  .handler(({ input }) => {
-    console.log({ input });
-    console.log('EXECUTING ACTION');
+    try {
+      await booksService.create({
+        author: input.author,
+        title: input.title,
+        totalPages: input.pages,
+      });
+    } catch (error) {
+      if (error instanceof Error) {
+        throw new ZSAError('ERROR', error);
+      }
+    }
   });

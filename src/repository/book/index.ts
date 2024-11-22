@@ -1,10 +1,11 @@
-import { BookDTO, BookGenresDTO } from '@/shared/dtos/bookDTO';
-import { BookRAW, BookSelect } from '@/types/book.type';
+import { BookGenresDTO } from '@/shared/dtos/bookDTO';
+import { BookInsert, BookRAW, BookSelect } from '@/types/book.type';
 
 export interface IBookRepository {
   getAll: (config: FilteredOptions) => Promise<BookGenresDTO[]>;
   getOne: (id: BookSelect) => Promise<BookGenresDTO>;
-  getByTitle: (title: BookRAW['title']) => Promise<BookDTO>;
+  bookExists: (title: BookRAW['title']) => Promise<boolean>;
+  create: (payload: BookInsert) => Promise<BookSelect>;
 }
 
 interface FilteredOptions {

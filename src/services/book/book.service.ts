@@ -6,8 +6,14 @@ export const booksService: BookService = {
     const books = await bookRepository.getAll({ query });
     return books;
   },
-  async bookExists(title) {
-    const book = await bookRepository.getByTitle(title);
-    return book !== undefined;
+  async create(payload) {
+    const bookExists = await bookRepository.bookExists(payload.title);
+
+    if (bookExists) {
+      throw new Error('This book already exists');
+    }
+
+    const result = await bookRepository.create(payload);
+    return result;
   },
 };

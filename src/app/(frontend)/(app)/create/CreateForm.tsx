@@ -32,6 +32,10 @@ export function CreateForm() {
       toast('Book succesfully added');
       form.reset();
     },
+    onError({ err }) {
+      toast(err.message);
+      form.setError('title', { message: err.message });
+    },
   });
 
   const handleSubmit = async (payload: CreateBookSchema) => {
