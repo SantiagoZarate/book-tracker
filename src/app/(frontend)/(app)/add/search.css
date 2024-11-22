@@ -1,0 +1,12 @@
+.search {
+  animation: show-border;
+  animation-timeline: scroll();
+  animation-range: 10px;
+  border-bottom: 1px solid transparent;
+}
+
+@keyframes show-border {
+  to {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  }
+}

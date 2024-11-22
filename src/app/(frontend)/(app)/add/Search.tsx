@@ -3,6 +3,7 @@
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useId } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
+import './search.css';
 
 export function Search() {
   const searchParams = useSearchParams();
@@ -21,7 +22,7 @@ export function Search() {
   }, 1000);
 
   return (
-    <section className="flex flex-col gap-1 p-2">
+    <section className="search sticky top-0 z-50 flex flex-col gap-1 bg-background p-2">
       <label htmlFor={inputId} className="text-xs font-semibold">
         Book title
       </label>
