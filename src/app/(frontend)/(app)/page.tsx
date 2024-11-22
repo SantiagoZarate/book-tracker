@@ -7,7 +7,7 @@ import { MotionListItem } from '../../components/motion/MotionListItem';
 import { BookTrackItem } from './BookTrackItem';
 
 export default async function page() {
-  const tracks = await trackService.getAll();
+  const tracks = await trackService.getAllByUser();
 
   return (
     <section className="flex flex-col gap-2">

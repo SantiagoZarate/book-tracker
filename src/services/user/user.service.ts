@@ -1,6 +1,7 @@
 import { userRepository } from '@/repository/user/user.repository';
 import { UserLogin, UserRegister } from '@/types/user.type';
 import bcrypt from 'bcrypt';
+import { getServerSession } from 'next-auth';
 
 const userService = {
   async register(payload: UserRegister) {
@@ -44,6 +45,13 @@ const userService = {
     const user = await userRepository.getByEmail(email);
 
     return user !== undefined;
+  },
+  async getUser() {
+    const session = await getServerSession();
+    console.log({ session });
+
+    const user = await userRepository.getByEmail(session!.user!.email!);
+    return user;
   },
 };
 

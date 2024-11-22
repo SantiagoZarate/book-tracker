@@ -16,6 +16,15 @@ const trackRepository: TrackRepository = {
     });
     return data.map((d) => trackBookSchemaDTO.parse(d));
   },
+  async getAllByUser({ id }) {
+    const data = await db.query.trackSchema.findMany({
+      where: (table) => eq(table.userId, id),
+      with: {
+        book: true,
+      },
+    });
+    return data.map((d) => trackBookSchemaDTO.parse(d));
+  },
   async getOne({ id }) {
     const data = await db.query.trackSchema.findFirst({
       where: (table) => eq(table.id, id),
@@ -36,6 +45,7 @@ const trackRepository: TrackRepository = {
       .insert(trackSchema)
       .values({
         bookId: payload.bookId,
+        userId: payload.userId,
       })
       .returning({ id: trackSchema.id });
 
