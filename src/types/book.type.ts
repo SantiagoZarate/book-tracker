@@ -5,7 +5,9 @@ export type BookRAW = Required<InferInsertModel<typeof bookSchema>>;
 
 export type BookSelect = Pick<BookRAW, 'id'>;
 export type BookDelete = Pick<BookRAW, 'id'>;
-export type BookInsert = Pick<BookRAW, 'author' | 'title' | 'totalPages'>;
+export type BookInsert = Pick<BookRAW, 'author' | 'title' | 'totalPages'> & {
+  genres: string[];
+};
 
 export interface Book {
   title: string;

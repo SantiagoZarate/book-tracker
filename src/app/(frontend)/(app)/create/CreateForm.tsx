@@ -10,6 +10,10 @@ import {
   FormMessage,
 } from '@/app/components/ui/form';
 import { Input } from '@/app/components/ui/input';
+import MultipleSelector, {
+  Option,
+} from '@/app/components/ui/multiple-selector';
+import { GenreDTO } from '@/shared/dtos/bookDTO';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -17,13 +21,23 @@ import { useServerAction } from 'zsa-react';
 import { createBookAction } from './action';
 import { CreateBookSchema, createBookSchema } from './bookSchema';
 
-export function CreateForm() {
+interface Props {
+  genres: GenreDTO[];
+}
+
+export function CreateForm({ genres }: Props) {
+  const multipleSelectorOptions: Option[] = genres.map((g) => ({
+    label: g.name,
+    value: g.name,
+  }));
+
   const form = useForm<CreateBookSchema>({
     resolver: zodResolver(createBookSchema),
     defaultValues: {
       pages: 1,
       author: '',
       title: '',
+      genres: [],
     },
   });
 
@@ -82,6 +96,28 @@ export function CreateForm() {
               <FormLabel>Number of pages</FormLabel>
               <FormControl>
                 <Input type="number" {...field} min={1} placeholder="232" />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="genres"
+          render={({ field }) => (
+            <FormItem className="col-span-2">
+              <FormLabel>Genres</FormLabel>
+              <FormControl>
+                <MultipleSelector
+                  {...field}
+                  defaultOptions={multipleSelectorOptions}
+                  placeholder="What is the genre of this book?"
+                  emptyIndicator={
+                    <p className="text-center text-lg leading-10 text-gray-600 dark:text-gray-400">
+                      no results found.
+                    </p>
+                  }
+                />
               </FormControl>
               <FormMessage />
             </FormItem>

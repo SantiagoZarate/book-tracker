@@ -1,5 +1,5 @@
 import { db } from '@/db/db';
-import { bookSchema } from '@/db/schemas';
+import { bookSchema, booksToGenres } from '@/db/schemas';
 import { BookGenresDTO, bookGenresSchemaDTO } from '@/shared/dtos/bookDTO';
 import { eq, like } from 'drizzle-orm';
 import { IBookRepository } from '.';
@@ -37,14 +37,25 @@ const bookRepository: IBookRepository = {
     return book !== undefined;
   },
   async create(payload) {
-    const result = await db
-      .insert(bookSchema)
-      .values({
-        author: payload.author,
-        title: payload.title,
-        totalPages: payload.totalPages,
-      })
-      .returning({ id: bookSchema.id });
+    const result = await db.transaction(async (tx) => {
+      const book = await tx
+        .insert(bookSchema)
+        .values({
+          author: payload.author,
+          title: payload.title,
+          totalPages: payload.totalPages,
+        })
+        .returning({ id: bookSchema.id });
+
+      const genresToBook = payload.genres.map((genre) => ({
+        bookId: book[0].id,
+        genreName: genre,
+      }));
+
+      await tx.insert(booksToGenres).values(genresToBook);
+
+      return book;
+    });
 
     return result[0];
   },

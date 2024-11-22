@@ -4,9 +4,12 @@
 
 import { AddMicroIcon } from '@/app/components/icons/AddMicroIcon';
 import { Section, SectionHeader } from '@/app/components/ui/section';
+import { booksService } from '@/services/book/book.service';
 import { CreateForm } from './CreateForm';
 
-export default function page() {
+export default async function CreateBookPage() {
+  const genres = await booksService.getGenres();
+
   return (
     <Section>
       <SectionHeader
@@ -14,7 +17,7 @@ export default function page() {
         description="Create a new book track"
         icon={<AddMicroIcon />}
       />
-      <CreateForm />
+      <CreateForm genres={genres} />
     </Section>
   );
 }
