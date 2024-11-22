@@ -28,7 +28,7 @@ export function Navbar() {
         <Link
           key={link.path}
           href={link.path}
-          className="group flex items-center gap-2 overflow-hidden rounded-sm p-4 transition hover:bg-secondary sm:p-2"
+          className="group flex items-center gap-2 overflow-hidden rounded-sm p-4 transition hover:bg-input sm:p-2"
         >
           <section className="relative">
             <span className="opacity-0">
