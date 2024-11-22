@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@/app/components/ui/button';
+import { MotionLoaderButton } from '@/app/components/motion/MotionLoaderButton';
 import {
   Form,
   FormControl,
@@ -12,6 +12,7 @@ import {
 import { Input } from '@/app/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import { useServerAction } from 'zsa-react';
 import { createBookAction } from './action';
 import { CreateBookSchema, createBookSchema } from './bookSchema';
@@ -20,43 +21,37 @@ export function CreateForm() {
   const form = useForm<CreateBookSchema>({
     resolver: zodResolver(createBookSchema),
     defaultValues: {
-      pages: 0,
+      pages: 1,
       author: '',
       title: '',
     },
   });
 
-  const { execute } = useServerAction(createBookAction);
+  const { execute, isPending } = useServerAction(createBookAction, {
+    onSuccess() {
+      toast('Book succesfully added');
+      form.reset();
+    },
+  });
 
   const handleSubmit = async (payload: CreateBookSchema) => {
-    console.log({ payload });
-
-    const [data, err] = await execute(payload);
-
-    if (err) {
-      console.log(err);
-      console.log('ERROR');
-      return;
-    }
-
-    console.log(data);
-    form.reset();
+    execute(payload);
   };
 
   return (
-    <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(handleSubmit)}
-        className="flex flex-col gap-4"
-      >
+    <form
+      onSubmit={form.handleSubmit(handleSubmit)}
+      className="grid grid-cols-2 gap-4"
+    >
+      <Form {...form}>
         <FormField
           name="title"
           control={form.control}
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="col-span-2">
               <FormLabel>Title</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} placeholder="The Lord Of The Rings" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -69,7 +64,7 @@ export function CreateForm() {
             <FormItem>
               <FormLabel>Author</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} placeholder="J.R.R. Tolkien" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -82,14 +77,14 @@ export function CreateForm() {
             <FormItem>
               <FormLabel>Number of pages</FormLabel>
               <FormControl>
-                <Input type="number" {...field} />
+                <Input type="number" {...field} min={1} placeholder="232" />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button>Create</Button>
-      </form>
-    </Form>
+        <MotionLoaderButton className="col-span-2" isPending={isPending} />
+      </Form>
+    </form>
   );
 }

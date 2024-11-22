@@ -1,5 +1,9 @@
 import { db } from '@/db/db';
-import { BookGenresDTO, bookGenresSchemaDTO } from '@/shared/dtos/bookDTO';
+import {
+  BookGenresDTO,
+  bookGenresSchemaDTO,
+  bookSchemaDTO,
+} from '@/shared/dtos/bookDTO';
 import { eq, like } from 'drizzle-orm';
 import { IBookRepository } from '.';
 
@@ -27,6 +31,12 @@ const bookRepository: IBookRepository = {
     });
 
     return bookGenresSchemaDTO.parse(data);
+  },
+  async getByTitle(title) {
+    const book = await db.query.bookSchema.findFirst({
+      where: (table) => eq(table.title, title),
+    });
+    return bookSchemaDTO.parse(book);
   },
 };
 
