@@ -21,8 +21,6 @@ class UserRepository {
   }
 
   async create(payload: UserRegister) {
-    console.log({ payload });
-
     const data = await db.insert(userSchema).values(payload).returning({
       id: userSchema.id,
     });

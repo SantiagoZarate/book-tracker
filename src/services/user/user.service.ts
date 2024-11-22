@@ -48,8 +48,6 @@ const userService = {
   },
   async getUser() {
     const session = await getServerSession();
-    console.log({ session });
-
     const user = await userRepository.getByEmail(session!.user!.email!);
     return user;
   },
