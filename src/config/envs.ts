@@ -36,6 +36,4 @@ const envs: EnvsType = {
   },
 };
 
-console.log({ envs });
-
 export default envsSchema.parse(envs);
