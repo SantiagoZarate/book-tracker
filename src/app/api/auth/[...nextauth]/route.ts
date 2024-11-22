@@ -7,6 +7,7 @@ import GithubProvider from 'next-auth/providers/github';
 // import GoogleProvider from 'next-auth/providers/google';
 
 const handler = NextAuth({
+  secret: envs.auth.secret,
   pages: {
     newUser: '/',
     signIn: '/signin',
