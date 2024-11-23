@@ -8,7 +8,7 @@ interface Props extends ButtonProps {
 
 export function MotionLoaderButton({ isPending, ...args }: Props) {
   return (
-    <Button disabled={isPending} {...args}>
+    <Button disabled={isPending || args.disabled} {...args}>
       <AnimatePresence mode="wait">
         {isPending ? (
           <motion.span
@@ -28,7 +28,7 @@ export function MotionLoaderButton({ isPending, ...args }: Props) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.15 }}
           >
-            Create
+            {args.children}
           </motion.span>
         )}
       </AnimatePresence>

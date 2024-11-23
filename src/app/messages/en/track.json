@@ -1,0 +1,13 @@
+{
+  "track": {
+    "form": {
+      "title": "Add new session",
+      "description": "How many pages did you read?",
+      "add": "add session"
+    },
+    "sessions": {
+      "description": "Check the historical log for this track",
+      "title": "previous sessions"
+    }
+  }
+}

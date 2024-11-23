@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useId } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
@@ -10,6 +11,7 @@ export function Search() {
   const { replace } = useRouter();
   const path = usePathname();
   const inputId = useId();
+  const t = useTranslations();
 
   const handleOnChange = useDebouncedCallback((value: string) => {
     const url = new URLSearchParams(searchParams);
@@ -24,13 +26,13 @@ export function Search() {
   return (
     <section className="search sticky top-0 z-50 flex flex-col gap-1 bg-background p-2">
       <label htmlFor={inputId} className="text-xs font-semibold">
-        Book title
+        {t('add.label')}
       </label>
       <input
         defaultValue={searchParams.get('search')?.toString() ?? ''}
         className="text-ms rounded-sm border bg-card px-2 py-1"
         onChange={(e) => handleOnChange(e.target.value)}
-        placeholder="The lord of the ring"
+        placeholder={t('add.placeholder')}
         id={inputId}
         type="text"
       />

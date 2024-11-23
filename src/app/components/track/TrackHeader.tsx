@@ -10,7 +10,7 @@ export function TrackHeader() {
 
   return (
     <header className="relative flex flex-col gap-8 p-4">
-      <Link className="absolute -top-8" href={'/'}>
+      <Link className="absolute -top-8" href={'/home'}>
         <Button variant={'icon'}>
           <BackArrowMicroIcon />
         </Button>

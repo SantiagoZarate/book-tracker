@@ -8,6 +8,7 @@ import { Button } from '@/app/components/ui/button';
 import { SectionHeader } from '@/app/components/ui/section';
 import { AnimatePresence } from 'framer-motion';
 import moment from 'moment';
+import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
 import { useServerAction } from 'zsa-react';
 import { useTracker } from '../../../hooks/useTracker';
@@ -16,6 +17,7 @@ import { deleteSessionAction } from './actions';
 export function Sessions() {
   const { track, addSession } = useTracker();
   const { sessions } = track;
+  const t = useTranslations();
   const { execute } = useServerAction(deleteSessionAction, {
     onSuccess() {
       toast('Session deleted succesfully');
@@ -43,9 +45,9 @@ export function Sessions() {
   return (
     <>
       <SectionHeader
-        description="Check the historical log for this track"
+        description={t('track.sessions.description')}
+        title={t('track.sessions.title')}
         icon={<CalendarMicroIcon />}
-        title="previous sessions"
       />
       <MotionList className="flex flex-col gap-1">
         <AnimatePresence mode="popLayout">

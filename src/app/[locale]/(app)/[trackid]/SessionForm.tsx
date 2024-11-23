@@ -1,11 +1,12 @@
 'use client';
 
 import { EditSquareMicroIcon } from '@/app/components/icons/EditSquareMicroIcon';
-import { Button } from '@/app/components/ui/button';
+import { MotionLoaderButton } from '@/app/components/motion/MotionLoaderButton';
 import { SectionHeader } from '@/app/components/ui/section';
 import { fadeInAndOut } from '@/app/lib/motion-animations';
 import { AnimatePresence, motion } from 'framer-motion';
 import { nanoid } from 'nanoid';
+import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
 import { useServerAction } from 'zsa-react';
 import { useTracker } from '../../../hooks/useTracker';
@@ -54,12 +55,14 @@ export function SessionForm({
     });
   };
 
+  const t = useTranslations();
+
   return (
     <>
       <SectionHeader
-        description="How many pages did you read?"
+        description={t('track.form.description')}
+        title={t('track.form.title')}
         icon={<EditSquareMicroIcon />}
-        title="Add new session"
       />
       <form
         className="relative flex items-center gap-2"
@@ -91,9 +94,12 @@ export function SessionForm({
             +
           </button>
         </section>
-        <Button disabled={isPending || pagesCount === initialPages}>
-          Add session
-        </Button>
+        <MotionLoaderButton
+          isPending={!isPending}
+          disabled={pagesCount === initialPages}
+        >
+          {t('track.form.add')}
+        </MotionLoaderButton>
       </form>
     </>
   );
