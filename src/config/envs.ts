@@ -12,6 +12,7 @@ const envsSchema = z.object({
       secret: z.string(),
     }),
     secret: z.string(),
+    adminEmail: z.string().email(),
   }),
   db: z.object({
     url: z.string(),
@@ -29,6 +30,7 @@ const envs: EnvsType = {
       secret: process.env.GITHUB_CLIENT_SECRET ?? '',
     },
     secret: process.env.NEXTAUTH_SECRET ?? '',
+    adminEmail: process.env.ADMIN_EMAIL ?? '',
   },
   db: {
     token: process.env.TURSO_TOKEN ?? '',

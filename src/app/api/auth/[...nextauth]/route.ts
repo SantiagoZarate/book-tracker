@@ -3,7 +3,7 @@ import { userService } from '@/services/user/user.service';
 import NextAuth from 'next-auth';
 
 import CredentialsProvider from 'next-auth/providers/credentials';
-import GithubProvider from 'next-auth/providers/github';
+import GithubProvider, { GithubProfile } from 'next-auth/providers/github';
 // import GoogleProvider from 'next-auth/providers/google';
 
 const handler = NextAuth({
@@ -31,11 +31,31 @@ const handler = NextAuth({
       }
       return true;
     },
+    jwt({ user, token }) {
+      if (user) {
+        token.role = user.role;
+      }
+      return token;
+    },
+    session({ token, session }) {
+      if (session.user) {
+        session.user.role = token.role;
+      }
+      return session;
+    },
   },
   providers: [
     GithubProvider({
       clientId: envs.auth.github.id,
       clientSecret: envs.auth.github.secret,
+      profile(profile: GithubProfile) {
+        console.log('GITHUB PROFILE:');
+        return {
+          ...profile,
+          role: envs.auth.adminEmail === profile.email ? 'admin' : 'user',
+          id: profile.id.toString(),
+        };
+      },
     }),
     CredentialsProvider({
       // Name and credentials are used by the built in next auth page
@@ -55,7 +75,7 @@ const handler = NextAuth({
         });
 
         if (user) {
-          return { ...user, name: user.username };
+          return { ...user, name: user.username, role: 'user' };
         } else {
           return null;
         }

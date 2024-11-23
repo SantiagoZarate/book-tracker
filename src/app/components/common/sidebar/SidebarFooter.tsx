@@ -13,6 +13,7 @@ export function SidebarFooter() {
   return (
     <footer className="hidden p-1 sm:block">
       <p className="text-xs">{data.user?.name}</p>
+      <p className="text-xs">{data.user?.role}</p>
       <Button
         className="w-full"
         onClick={() => signOut({ redirect: true, callbackUrl: '/signin' })}

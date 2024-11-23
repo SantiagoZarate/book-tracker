@@ -1,24 +1,29 @@
-export { default } from 'next-auth/middleware';
+import withAuth, { NextRequestWithAuth } from 'next-auth/middleware';
+import { NextResponse } from 'next/server';
 
-// import envs from '@/config/envs';
-// import { getToken } from 'next-auth/jwt';
-// import { NextResponse, type NextRequest } from 'next/server';
+export default withAuth(
+  function middleware(req: NextRequestWithAuth) {
+    console.log('RUNNING MIDDLEWARE');
 
-// export async function middleware(req: NextRequest) {
-//   // Get the token from the request (using NextAuth JWT)
-//   const token = await getToken({ req, secret: envs.auth.secret });
+    if (req.nextUrl.pathname.startsWith('/dashboard')) {
+      console.log('LLENDO A DASHBOARD');
 
-//   if (!token) {
-//     // If no token exists, redirect to the login page
-//     const loginUrl = new URL('/signin', req.url);
-//     loginUrl.searchParams.set('callbackUrl', req.url); // Preserve the attempted URL
-//     return NextResponse.redirect(loginUrl);
-//   }
+      if (req.nextauth.token?.role !== 'admin') {
+        console.log('HOLAAA');
 
-//   // Allow access if the user is authenticated
-//   return NextResponse.next();
-// }
+        return NextResponse.rewrite(new URL('/', req.url));
+      }
+    }
+  },
+  {
+    callbacks: {
+      authorized({ token }) {
+        return !!token;
+      },
+    },
+  },
+);
 
 export const config = {
-  matcher: ['/', '/add/:path*', '/create/:path*'], // Define protected routes
+  matcher: ['/', '/add/', '/create/:path*', '/dashboard/:path*'], // Define protected routes
 };
