@@ -1,9 +1,9 @@
 import { QueueListMicroIcon } from '@/app/components/icons/QueueListMicroIcon';
+import { MotionList } from '@/app/components/motion/MotionList';
+import { MotionListItem } from '@/app/components/motion/MotionListItem';
 import { SectionHeader } from '@/app/components/ui/section';
 import { trackService } from '@/services/track/track.service';
 import Link from 'next/link';
-import { MotionList } from '../../components/motion/MotionList';
-import { MotionListItem } from '../../components/motion/MotionListItem';
 import { BookTrackItem } from './BookTrackItem';
 
 export default async function page() {

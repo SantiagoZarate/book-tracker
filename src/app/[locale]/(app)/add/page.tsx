@@ -1,3 +1,4 @@
+import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import { BooksList } from './BooksList';
@@ -12,14 +13,15 @@ interface Props {
 
 export default async function Page({ searchParams }: Props) {
   const query = searchParams.search ?? '';
+  const t = await getTranslations();
 
   return (
     <section className="flex flex-col gap-4 pt-4">
       <Search />
       <p className="text-center text-xs">
-        The book you&apos;re looking for is not here?{' '}
+        {t('add.title')}
         <Link href="/create" className="font-bold hover:underline">
-          add it yourself!
+          {t('add.description')}
         </Link>
       </p>
       <Suspense fallback={<Loader />}>

@@ -4,28 +4,6 @@ import createIntlMiddleware from 'next-intl/middleware';
 import { NextRequest, NextResponse } from 'next/server';
 import { routing } from './app/i18n/routing';
 
-// export default withAuth(
-//   function middleware(req: NextRequestWithAuth) {
-//     if (req.nextUrl.pathname.startsWith('/dashboard')) {
-//       if (req.nextauth.token?.role !== 'admin') {
-//         return i18nMiddleware(req);
-//       }
-//     }
-//     return i18nMiddleware(req);
-//   },
-//   {
-//     callbacks: {
-//       authorized() {
-//         return true;
-//       },
-//     },
-//   },
-// );
-
-// export const config = {
-//   matcher: ['/', '/add/', '/create/:path*', '/dashboard/:path*'], // Define protected routes
-// };
-
 const publicPages = ['/signin', '/signup'];
 
 const intlMiddleware = createIntlMiddleware(routing);
@@ -47,7 +25,7 @@ const authMiddleware = withAuth(
     if (req.nextUrl.pathname.startsWith('/dashboard')) {
       console.log('TRYING TO ACCESS TO DASHBOARD');
       if (req.nextauth.token?.role !== 'admin') {
-        const url = new URL('/en', req.url);
+        const url = new URL('/home', req.url);
         return NextResponse.redirect(url);
         // return intlMiddleware(req);
       }
@@ -70,7 +48,7 @@ export default function middleware(req: NextRequest) {
   );
   const isPublicPage = publicPathnameRegex.test(req.nextUrl.pathname);
 
-  if (isPublicPage && req.nextUrl.pathname !== '/') {
+  if (isPublicPage) {
     console.log('ES RUTA PUBLICA');
 
     return intlMiddleware(req);

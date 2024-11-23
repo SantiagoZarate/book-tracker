@@ -1,3 +1,5 @@
+import { TrackBar } from '@/app/components/track/TrackBar';
+import { ProgressBar } from '@/app/components/ui/ProgressBar';
 import {
   Tooltip,
   TooltipContent,
@@ -6,8 +8,6 @@ import {
 } from '@/app/components/ui/tooltip';
 import { TrackBookPagesDTO } from '@/shared/dtos/trackDTO';
 import Link from 'next/link';
-import { TrackBar } from '../../components/track/TrackBar';
-import { ProgressBar } from '../../components/ui/ProgressBar';
 
 interface Props {
   track: TrackBookPagesDTO;
