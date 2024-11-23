@@ -20,6 +20,6 @@ export const addBookAction = createServerAction()
     } catch (error) {
       console.log(error);
     }
-    revalidatePath('/', 'page');
-    redirect('/');
+    revalidatePath('/home', 'page');
+    redirect('/home');
   });

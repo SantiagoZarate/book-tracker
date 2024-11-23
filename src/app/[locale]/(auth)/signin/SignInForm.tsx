@@ -24,7 +24,7 @@ export function SignInForm() {
     setIsPending(true);
     signIn('credentials', {
       redirect: true,
-      callbackUrl: '/',
+      callbackUrl: '/home',
       ...data,
     })
       .then((response) => {

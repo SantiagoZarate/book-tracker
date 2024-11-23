@@ -81,7 +81,7 @@ export function ProviderButton({
 }: ProviderButtonProps) {
   return (
     <Button
-      onClick={() => signIn(provider, { redirect: true, callbackUrl: '/' })}
+      onClick={() => signIn(provider, { redirect: true, callbackUrl: '/home' })}
       className="font-semibold capitalize"
       variant="secondary"
       {...args}

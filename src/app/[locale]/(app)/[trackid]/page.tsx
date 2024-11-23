@@ -27,8 +27,6 @@ export default function Page() {
     setPagesCount(totalPagesRead);
   }, [totalPagesRead]);
 
-  console.log({ pagesCount });
-
   const handleIncreasePage = () => {
     if (pagesCount >= track.book.totalPages) return;
     setPagesCount(pagesCount + 1);

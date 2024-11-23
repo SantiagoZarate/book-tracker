@@ -19,8 +19,8 @@ export const deleteTrackAction = createServerAction()
     } catch (error) {
       console.log(error);
     }
-    revalidatePath('/', 'page');
-    redirect('/');
+    revalidatePath('/home', 'page');
+    redirect('/home');
   });
 
 export const addSessionAction = createServerAction()
