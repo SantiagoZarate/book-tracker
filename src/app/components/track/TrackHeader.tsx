@@ -1,4 +1,4 @@
-import { TrackMenu } from '@/app/(frontend)/(app)/[trackid]/TrackMenu';
+import { TrackMenu } from '@/app/[locale]/(app)/[trackid]/TrackMenu';
 import { useTracker } from '@/app/hooks/useTracker';
 import moment from 'moment';
 import Link from 'next/link';
