@@ -27,7 +27,7 @@ export function BookTrackItem({ track }: Props) {
         <TooltipTrigger className="w-full">
           <Link
             href={'/' + track.id}
-            className={`m-1 flex w-full flex-col gap-1 rounded-md p-2 transition hover:bg-secondary ${
+            className={`flex w-full flex-col gap-1 rounded-md p-2 transition hover:bg-secondary ${
               track.isCompleted && 'bg-green-100'
             }`}
           >

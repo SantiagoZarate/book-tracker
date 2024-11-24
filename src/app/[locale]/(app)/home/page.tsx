@@ -29,7 +29,7 @@ export default async function page() {
         ) : (
           <MotionList className="flex flex-col divide-y">
             {tracks.map((track) => (
-              <MotionListItem key={track.id}>
+              <MotionListItem key={track.id} className="p-1">
                 <BookTrackItem track={track} />
               </MotionListItem>
             ))}
