@@ -1,6 +1,6 @@
 import { SessionDTO } from '@/shared/dtos/sessionDTO';
+import { formatDistance } from 'date-fns';
 import { motion } from 'framer-motion';
-import moment from 'moment';
 import { XMarkMicroIcon } from '../icons/XMarkMicroIcon';
 import { MotionListItem } from '../motion/MotionListItem';
 import { Button } from '../ui/button';
@@ -31,7 +31,7 @@ export function SessionItem({ session, onSelect, onDelete }: Props) {
             {session.createdAt}
           </motion.p>
           <motion.p layoutId={`since-${session.id}`} className="text-xs">
-            {moment(session.createdAt).subtract(3, 'hours').fromNow()}
+            {formatDistance(new Date(session.createdAt), new Date())}
           </motion.p>
         </footer>
       </section>

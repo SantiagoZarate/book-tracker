@@ -1,6 +1,6 @@
 import { TrackMenu } from '@/app/[locale]/(app)/[trackid]/TrackMenu';
 import { useTracker } from '@/app/hooks/useTracker';
-import moment from 'moment';
+import { formatDistance } from 'date-fns';
 import Link from 'next/link';
 import { BackArrowMicroIcon } from '../icons/BackArrowMicroIcon';
 import { Button } from '../ui/button';
@@ -19,7 +19,7 @@ export function TrackHeader() {
         <section className="flex-1">
           <p className="text-3xl font-semibold">{track.book.title}</p>
           <p className="text-sm">
-            {moment(track.startedAt).subtract(3, 'hours').fromNow()}
+            {formatDistance(new Date(track.startedAt), new Date())}
           </p>
         </section>
         <TrackMenu />
