@@ -1,11 +1,11 @@
 'use server';
 
-import { sessionService } from '@/services/session/sessionService';
+import { sessionService } from '@/services/session/session.service';
 import { trackService } from '@/services/track/track.service';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
-import { createServerAction } from 'zsa';
+import { createServerAction, ZSAError } from 'zsa';
 
 export const deleteTrackAction = createServerAction()
   .input(
@@ -72,4 +72,26 @@ export const deleteSessionAction = createServerAction()
       console.log(error);
     }
     revalidatePath('/' + input.trackId, 'layout');
+  });
+
+export const addSessionContentAction = createServerAction()
+  .input(
+    z.object({
+      content: z.string(),
+      sessionId: z.string(),
+    }),
+  )
+  .handler(async ({ input }) => {
+    try {
+      await sessionService.addContent(
+        { content: input.content },
+        {
+          id: input.sessionId,
+        },
+      );
+    } catch (error) {
+      if (error instanceof Error) {
+        throw new ZSAError('ERROR', error);
+      }
+    }
   });

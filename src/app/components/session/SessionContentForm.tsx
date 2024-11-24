@@ -15,9 +15,13 @@ type SessionContentSchema = z.infer<typeof sessionContentSchema>;
 
 interface Props {
   defaultContent?: string;
+  onSaveContent: (content: string) => void;
 }
 
-export function SessionContentForm({ defaultContent = '' }: Props) {
+export function SessionContentForm({
+  onSaveContent,
+  defaultContent = '',
+}: Props) {
   const form = useForm<SessionContentSchema>({
     resolver: zodResolver(sessionContentSchema),
     defaultValues: {
@@ -27,9 +31,10 @@ export function SessionContentForm({ defaultContent = '' }: Props) {
 
   return (
     <motion.form
-      {...opacity}
-      action=""
       className="m-1 flex flex-col items-end gap-2 rounded-[inherit] bg-input p-1"
+      // onSubmit={form.handleSubmit(({ content }) => onSaveContent(content))}
+      {...opacity}
+      action={() => onSaveContent(form.getValues('content'))}
     >
       <Form {...form}>
         <FormField

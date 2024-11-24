@@ -1,6 +1,11 @@
 import { db } from '@/db/db';
 import { sessionSchema } from '@/db/schemas';
-import { SessionDelete, SessionInsert } from '@/types/session.type';
+import {
+  SessionDelete,
+  SessionInsert,
+  SessionRAW,
+  SessionSelect,
+} from '@/types/session.type';
 import { TrackSelect } from '@/types/track.type';
 import { eq, sql } from 'drizzle-orm';
 
@@ -34,6 +39,19 @@ const sessionRepository = {
   },
   async delete({ id }: SessionDelete) {
     const data = await db.delete(sessionSchema).where(eq(sessionSchema.id, id));
+    return data.rowsAffected === 1;
+  },
+  async addContent(
+    { content }: Pick<SessionRAW, 'content'>,
+    { id }: SessionSelect,
+  ) {
+    const data = await db
+      .update(sessionSchema)
+      .set({
+        content,
+      })
+      .where(eq(sessionSchema.id, id));
+
     return data.rowsAffected === 1;
   },
 };
