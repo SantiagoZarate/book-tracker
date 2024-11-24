@@ -1,11 +1,12 @@
 'use client';
 
+import { AddMicroIcon } from '@/app/components/icons/AddMicroIcon';
 import { EditSquareMicroIcon } from '@/app/components/icons/EditSquareMicroIcon';
 import { MotionLoaderButton } from '@/app/components/motion/MotionLoaderButton';
 import { SectionHeader } from '@/app/components/ui/section';
 import { fadeInAndOut } from '@/app/lib/motion-animations';
+import { format } from 'date-fns';
 import { AnimatePresence, motion } from 'framer-motion';
-import moment from 'moment';
 import { nanoid } from 'nanoid';
 import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
@@ -44,7 +45,7 @@ export function SessionForm({
         ...track.sessions,
         {
           pagesRead: pagesReadDuringThisSession,
-          createdAt: moment().format('YYYY-MM-DD HH:mm:ss').toString(),
+          createdAt: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
           content: 'nueva session',
           id: nanoid(),
         },
@@ -96,6 +97,7 @@ export function SessionForm({
           </button>
         </section>
         <MotionLoaderButton
+          icon={<AddMicroIcon />}
           className="w-full min-w-[150px] sm:w-fit"
           isPending={isPending}
           disabled={pagesCount === initialPages}

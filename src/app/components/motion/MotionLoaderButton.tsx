@@ -1,14 +1,14 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { Loader2 } from 'lucide-react';
-import { Button, ButtonProps } from '../ui/button';
+import { IconButton, IconButtonProps } from '../ui/button';
 
-interface Props extends ButtonProps {
+interface Props extends IconButtonProps {
   isPending: boolean;
 }
 
 export function MotionLoaderButton({ isPending, ...args }: Props) {
   return (
-    <Button disabled={isPending || args.disabled} {...args}>
+    <IconButton disabled={isPending || args.disabled} {...args}>
       <AnimatePresence mode="wait">
         {isPending ? (
           <motion.span
@@ -32,6 +32,6 @@ export function MotionLoaderButton({ isPending, ...args }: Props) {
           </motion.span>
         )}
       </AnimatePresence>
-    </Button>
+    </IconButton>
   );
 }

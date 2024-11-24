@@ -1,5 +1,6 @@
 'use client';
 
+import { AddMicroIcon } from '@/app/components/icons/AddMicroIcon';
 import { MotionList } from '@/app/components/motion/MotionList';
 import { MotionListItem } from '@/app/components/motion/MotionListItem';
 import { MotionLoaderButton } from '@/app/components/motion/MotionLoaderButton';
@@ -36,8 +37,10 @@ export function Books({ books }: Props) {
               </section>
               <MotionLoaderButton
                 onClick={() => execute({ bookId: book.id })}
-                isPending={isPending}
                 className="min-w-[80px]"
+                icon={<AddMicroIcon />}
+                isPending={isPending}
+                iconPos="left"
               >
                 {t('add.button')}
               </MotionLoaderButton>

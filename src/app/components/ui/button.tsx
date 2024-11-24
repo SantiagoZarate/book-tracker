@@ -96,7 +96,7 @@ export function ProviderButton({
 
 type IconPos = 'left' | 'right';
 
-interface Props extends ButtonProps {
+export interface IconButtonProps extends ButtonProps {
   icon: JSX.Element;
   iconPos?: IconPos;
 }
@@ -106,21 +106,14 @@ export function IconButton({
   iconPos = 'left',
   className,
   ...args
-}: Props) {
+}: IconButtonProps) {
   const style =
     iconPos === 'left'
       ? { icon: 'translate-x-2', children: '-translate-x-2 ' }
       : { icon: '-translate-x-2', children: 'translate-x-2 ' };
 
   return (
-    <Button
-      className={cn(
-        'group/button',
-        className,
-        `${iconPos === 'left' ? '' : 'flex-row-reverse'}`,
-      )}
-      {...args}
-    >
+    <Button className={cn('group/button', className)} {...args}>
       <span
         className={
           style.icon +
