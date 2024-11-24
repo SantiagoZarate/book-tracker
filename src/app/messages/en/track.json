@@ -3,7 +3,8 @@
     "form": {
       "title": "Add new session",
       "description": "How many pages did you read?",
-      "add": "add session"
+      "add": "add session",
+      "currentSession": " pages read during this session"
     },
     "sessions": {
       "description": "Check the historical log for this track",

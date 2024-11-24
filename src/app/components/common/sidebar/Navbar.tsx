@@ -34,14 +34,24 @@ export function Navbar() {
   const session = useSession();
   const i18n = useTranslations();
 
+  const lastSegmente = '/' + path.split('/')[2];
+
   return (
     <nav className="flex w-full flex-col gap-1 p-1">
       {getPubliLinks(i18n).map((link) => (
-        <NavbarLink key={link.path} active={path === link.path} link={link} />
+        <NavbarLink
+          key={link.path}
+          active={lastSegmente === link.path}
+          link={link}
+        />
       ))}
       {session.data?.user.role === 'admin' &&
         getPrivateLinks(i18n).map((link) => (
-          <NavbarLink key={link.path} active={path === link.path} link={link} />
+          <NavbarLink
+            key={link.path}
+            active={lastSegmente === link.path}
+            link={link}
+          />
         ))}
     </nav>
   );

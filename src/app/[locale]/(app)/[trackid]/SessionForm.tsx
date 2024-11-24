@@ -65,17 +65,17 @@ export function SessionForm({
         icon={<EditSquareMicroIcon />}
       />
       <form
-        className="relative flex items-center gap-2"
+        className="relative flex flex-col items-center gap-2 sm:flex-row"
         action={handleAddSession}
       >
         <AnimatePresence>
           {pagesCount !== initialPages && (
             <motion.p {...fadeInAndOut} className="absolute -bottom-4 text-xs">
-              {pagesReadDuringThisSession} pages read during this session
+              {pagesReadDuringThisSession + t('track.form.currentSession')}
             </motion.p>
           )}
         </AnimatePresence>
-        <section className="flex flex-1 divide-x divide-primary overflow-hidden rounded-lg bg-input">
+        <section className="flex w-full flex-1 divide-x divide-primary overflow-hidden rounded-lg bg-input">
           <button
             type="button"
             disabled={isPending || pagesCount === initialPages}
@@ -95,7 +95,8 @@ export function SessionForm({
           </button>
         </section>
         <MotionLoaderButton
-          isPending={!isPending}
+          className="w-full min-w-[150px] sm:w-fit"
+          isPending={isPending}
           disabled={pagesCount === initialPages}
         >
           {t('track.form.add')}

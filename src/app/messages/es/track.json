@@ -3,7 +3,8 @@
     "form": {
       "title": "Agregar nueva sesión",
       "description": "¿Cuántas páginas leíste?",
-      "add": "agregar session"
+      "add": "agregar sesión",
+      "currentSession": " páginas leídas durante esta sesión"
     },
     "sessions": {
       "description": "Consulta el registro histórico de esta pista.",
