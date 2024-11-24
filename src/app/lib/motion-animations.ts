@@ -17,3 +17,15 @@ export const fadeInAndOut: Variants = {
     x: 0,
   },
 };
+
+export const opacity: Variants = {
+  initial: {
+    opacity: 0,
+  },
+  exit: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+  },
+};
