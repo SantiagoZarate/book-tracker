@@ -5,6 +5,7 @@ import { useSession } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
 import { AddSquareMicroIcon } from '../../icons/AddSquareMicroIcon';
+import { ChartMicroIcon } from '../../icons/ChartMicroIcon';
 import { HomeMicroIcon } from '../../icons/HomeMicroIcon';
 import { NavbarLink } from './NavbarLink';
 
@@ -25,7 +26,7 @@ const getPrivateLinks = (i18n: TFunction) =>
     {
       text: i18n('nav.dashboard'),
       path: '/dashboard',
-      icon: <AddSquareMicroIcon />,
+      icon: <ChartMicroIcon />,
     },
   ] satisfies ILink[];
 
