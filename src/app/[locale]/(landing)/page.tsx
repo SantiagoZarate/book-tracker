@@ -1,3 +1,3 @@
 export default function LandingPage() {
-  return <div>landing</div>;
+  return <main className="grid h-full place-content-center">LANDING</main>;
 }
