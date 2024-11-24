@@ -1,7 +1,8 @@
 'use client';
 
 import { signOut, useSession } from 'next-auth/react';
-import { Button } from '../../ui/button';
+import { SignOutMicroIcon } from '../../icons/SignOutMicroIcon';
+import { IconButton } from '../../ui/button';
 
 export function SidebarFooter() {
   const { data } = useSession();
@@ -14,12 +15,13 @@ export function SidebarFooter() {
     <footer className="hidden p-1 sm:block">
       <p className="text-xs">{data.user?.name}</p>
       <p className="text-xs">{data.user?.role}</p>
-      <Button
+      <IconButton
+        icon={<SignOutMicroIcon />}
         className="w-full"
         onClick={() => signOut({ redirect: true, callbackUrl: '/signin' })}
       >
         Sign out
-      </Button>
+      </IconButton>
     </footer>
   );
 }

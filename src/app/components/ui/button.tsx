@@ -94,4 +94,51 @@ export function ProviderButton({
   );
 }
 
+type IconPos = 'left' | 'right';
+
+interface Props extends ButtonProps {
+  icon: JSX.Element;
+  iconPos?: IconPos;
+}
+
+export function IconButton({
+  icon,
+  iconPos = 'left',
+  className,
+  ...args
+}: Props) {
+  const style =
+    iconPos === 'left'
+      ? { icon: 'translate-x-2', children: '-translate-x-2 ' }
+      : { icon: '-translate-x-2', children: 'translate-x-2 ' };
+
+  return (
+    <Button
+      className={cn(
+        'group/button',
+        className,
+        `${iconPos === 'left' ? '' : 'flex-row-reverse'}`,
+      )}
+      {...args}
+    >
+      <span
+        className={
+          style.icon +
+          ' opacity-0 transition [filter:blur(5px)] group-hover/button:translate-x-0 group-hover/button:opacity-100 group-hover/button:[filter:blur(0px)]'
+        }
+      >
+        {icon}
+      </span>
+      <span
+        className={
+          style.children +
+          ' transition-transform group-hover/button:translate-x-0'
+        }
+      >
+        {args.children}
+      </span>
+    </Button>
+  );
+}
+
 export { Button, buttonVariants };
