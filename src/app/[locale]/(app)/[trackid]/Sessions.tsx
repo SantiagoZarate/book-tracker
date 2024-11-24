@@ -53,6 +53,7 @@ export function Sessions() {
         <AnimatePresence mode="popLayout">
           {sessions.map((session) => (
             <MotionListItem
+              exit={{ opacity: 0 }}
               className="flex justify-between rounded-sm border border-dashed border-input bg-secondary p-1"
               key={session.id}
               layout

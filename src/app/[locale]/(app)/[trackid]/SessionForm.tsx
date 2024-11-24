@@ -5,6 +5,7 @@ import { MotionLoaderButton } from '@/app/components/motion/MotionLoaderButton';
 import { SectionHeader } from '@/app/components/ui/section';
 import { fadeInAndOut } from '@/app/lib/motion-animations';
 import { AnimatePresence, motion } from 'framer-motion';
+import moment from 'moment';
 import { nanoid } from 'nanoid';
 import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
@@ -43,7 +44,7 @@ export function SessionForm({
         ...track.sessions,
         {
           pagesRead: pagesReadDuringThisSession,
-          createdAt: new Date().toString(),
+          createdAt: moment().format('YYYY-MM-DD HH:mm:ss').toString(),
           content: 'nueva session',
           id: nanoid(),
         },

@@ -22,13 +22,6 @@ const variants: Variants = {
       staggerChildren: 0.05,
     },
   },
-  exit: {
-    transition: {
-      type: 'spring',
-      bounce: 0,
-      duration: 0.3,
-    },
-  },
 };
 
 export function MotionList({ ...args }: Props) {
@@ -38,7 +31,6 @@ export function MotionList({ ...args }: Props) {
       variants={variants}
       animate="visible"
       initial="hidden"
-      exit="exit"
       {...args}
     />
   );

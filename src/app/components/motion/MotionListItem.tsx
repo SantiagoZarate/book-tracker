@@ -17,12 +17,6 @@ const itemVariants: Variants = {
     transition: { duration: 0.2 },
     filter: 'blur(10px)',
   },
-  exit: {
-    opacity: 0,
-    y: 20,
-    transition: { duration: 0.2 },
-    filter: 'blur(10px)',
-  },
 };
 
 type Props = HTMLMotionProps<'li'>;

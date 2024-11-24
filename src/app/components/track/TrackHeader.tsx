@@ -18,7 +18,9 @@ export function TrackHeader() {
       <section className="flex gap-2">
         <section className="flex-1">
           <p className="text-3xl font-semibold">{track.book.title}</p>
-          <p className="text-sm">{moment().from(track.startedAt)}</p>
+          <p className="text-sm">
+            {moment(track.startedAt).subtract(3, 'hours').fromNow()}
+          </p>
         </section>
         <TrackMenu />
       </section>
