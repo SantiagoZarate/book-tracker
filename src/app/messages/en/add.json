@@ -3,6 +3,7 @@
     "title": "The book you're looking for is not here?",
     "description": "add it yourself!",
     "label": "Book title",
-    "placeholder": "The lord of the ring"
+    "placeholder": "The lord of the ring",
+    "button": "add"
   }
 }

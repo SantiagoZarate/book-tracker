@@ -2,9 +2,10 @@
 
 import { MotionList } from '@/app/components/motion/MotionList';
 import { MotionListItem } from '@/app/components/motion/MotionListItem';
-import { Button } from '@/app/components/ui/button';
+import { MotionLoaderButton } from '@/app/components/motion/MotionLoaderButton';
 import { BookGenresDTO } from '@/shared/dtos/bookDTO';
 import { AnimatePresence } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
 import { useServerAction } from 'zsa-react';
 import { addBookAction } from './action';
@@ -21,6 +22,8 @@ export function Books({ books }: Props) {
     },
   });
 
+  const t = useTranslations();
+
   return (
     <MotionList className="flex flex-col divide-y overflow-hidden">
       <AnimatePresence mode="popLayout">
@@ -31,13 +34,13 @@ export function Books({ books }: Props) {
                 <p>{book.title}</p>
                 <GenreList genres={book.genres} />
               </section>
-              <Button
-                disabled={isPending}
+              <MotionLoaderButton
                 onClick={() => execute({ bookId: book.id })}
-                className="transition"
+                isPending={isPending}
+                className="min-w-[80px]"
               >
-                Add
-              </Button>
+                {t('add.button')}
+              </MotionLoaderButton>
             </section>
           </MotionListItem>
         ))}

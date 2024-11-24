@@ -3,6 +3,7 @@
     "title": "¿El libro que estás buscando no está aquí?",
     "description": "¡añádelo tú mismo!",
     "label": "Titulo del libro",
-    "placeholder": "El señor de los anillos"
+    "placeholder": "El señor de los anillos",
+    "button": "añadir"
   }
 }
