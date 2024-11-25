@@ -13,8 +13,6 @@ const authMiddleware = withAuth(
   // the `authorized` callback has returned `true`
   // and not for pages listed in `pages`.
   async function onSuccess(req: NextRequestWithAuth) {
-    console.log('RUNNING AUTH MIDDLEARE');
-
     const token = await getToken({ req });
 
     if (!token) {
@@ -27,7 +25,6 @@ const authMiddleware = withAuth(
       if (req.nextauth.token?.role !== 'admin') {
         const url = new URL('/home', req.url);
         return NextResponse.redirect(url);
-        // return intlMiddleware(req);
       }
     }
 
@@ -49,11 +46,8 @@ export default function middleware(req: NextRequest) {
   const isPublicPage = publicPathnameRegex.test(req.nextUrl.pathname);
 
   if (isPublicPage) {
-    console.log('ES RUTA PUBLICA');
-
     return intlMiddleware(req);
   } else {
-    console.log('ES RUTA PRIVADA');
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return (authMiddleware as any)(req);
   }
