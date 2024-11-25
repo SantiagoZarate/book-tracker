@@ -1,5 +1,6 @@
 'use client';
 
+import { MoonIcon, SunIcon } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { Button } from '../../ui/button';
 
@@ -9,8 +10,12 @@ export function ThemeSwitcher() {
   console.log(theme);
 
   return theme === 'light' ? (
-    <Button onClick={() => setTheme('dark')}>change theme</Button>
+    <Button onClick={() => setTheme('dark')}>
+      <SunIcon />
+    </Button>
   ) : (
-    <Button onClick={() => setTheme('light')}>change theme</Button>
+    <Button onClick={() => setTheme('light')}>
+      <MoonIcon />
+    </Button>
   );
 }

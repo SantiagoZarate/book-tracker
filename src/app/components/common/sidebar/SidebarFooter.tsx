@@ -13,10 +13,12 @@ export function SidebarFooter() {
   }
 
   return (
-    <footer className="hidden p-1 sm:block">
+    <footer className="hidden flex-col gap-1 p-1 sm:flex">
+      <section className="flex flex-col">
+        <p className="text-xs capitalize text-black/50">{data.user?.role}</p>
+        <p className="text-sm">{data.user?.name}</p>
+      </section>
       <ThemeSwitcher />
-      <p className="text-xs">{data.user?.name}</p>
-      <p className="text-xs">{data.user?.role}</p>
       <IconButton
         icon={<SignOutMicroIcon />}
         className="w-full"
