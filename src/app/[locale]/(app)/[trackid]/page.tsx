@@ -21,7 +21,7 @@ export default function Page() {
   const [pagesCount, setPagesCount] = useState<number>(totalPagesRead);
 
   // Not very proud of this
-  // Without it, when a session i deleted
+  // Without it, when a session is deleted
   // totalPagesRead and pagesCount get desynchronized
   useEffect(() => {
     setPagesCount(totalPagesRead);
@@ -64,22 +64,18 @@ export default function Page() {
         </TrackBar>
         <p>{pagesLeft} Pages left</p>
       </Section>
-      <Section>
-        {track.isCompleted ? (
-          <CompleteBanner />
-        ) : (
-          <SessionForm
-            totalPages={track.book.totalPages}
-            onDecreasePage={handleDecreasePage}
-            onIncreasePage={handleIncreasePage}
-            initialPages={totalPagesRead}
-            pagesCount={pagesCount}
-          />
-        )}
-      </Section>
-      <Section>
-        <Sessions />
-      </Section>
+      {track.isCompleted ? (
+        <CompleteBanner />
+      ) : (
+        <SessionForm
+          totalPages={track.book.totalPages}
+          onDecreasePage={handleDecreasePage}
+          onIncreasePage={handleIncreasePage}
+          initialPages={totalPagesRead}
+          pagesCount={pagesCount}
+        />
+      )}
+      <Sessions />
     </section>
   );
 }

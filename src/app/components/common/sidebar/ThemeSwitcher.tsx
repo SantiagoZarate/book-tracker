@@ -7,8 +7,6 @@ import { Button } from '../../ui/button';
 export function ThemeSwitcher() {
   const { theme, setTheme } = useTheme();
 
-  console.log(theme);
-
   return theme === 'light' ? (
     <Button onClick={() => setTheme('dark')}>
       <SunIcon />

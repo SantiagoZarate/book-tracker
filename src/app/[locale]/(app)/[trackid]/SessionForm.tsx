@@ -3,7 +3,7 @@
 import { AddMicroIcon } from '@/app/components/icons/AddMicroIcon';
 import { EditSquareMicroIcon } from '@/app/components/icons/EditSquareMicroIcon';
 import { MotionLoaderButton } from '@/app/components/motion/MotionLoaderButton';
-import { SectionHeader } from '@/app/components/ui/section';
+import { Section, SectionHeader } from '@/app/components/ui/section';
 import { fadeInAndOut } from '@/app/lib/motion-animations';
 import { format } from 'date-fns';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -60,7 +60,7 @@ export function SessionForm({
   const t = useTranslations();
 
   return (
-    <>
+    <Section>
       <SectionHeader
         description={t('track.form.description')}
         title={t('track.form.title')}
@@ -105,6 +105,6 @@ export function SessionForm({
           {t('track.form.add')}
         </MotionLoaderButton>
       </form>
-    </>
+    </Section>
   );
 }

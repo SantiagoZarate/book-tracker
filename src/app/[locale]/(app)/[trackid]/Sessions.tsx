@@ -4,11 +4,11 @@ import { CalendarMicroIcon } from '@/app/components/icons/CalendarMicroIcon';
 import { MotionList } from '@/app/components/motion/MotionList';
 import { SessionDialog } from '@/app/components/session/SessionDialog';
 import { SessionItem } from '@/app/components/session/SessionItem';
-import { SectionHeader } from '@/app/components/ui/section';
+import { Section, SectionHeader } from '@/app/components/ui/section';
 import { SessionDTO } from '@/shared/dtos/sessionDTO';
 import { AnimatePresence } from 'framer-motion';
 import { useTranslations } from 'next-intl';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { toast } from 'sonner';
 import { useServerAction } from 'zsa-react';
@@ -19,6 +19,7 @@ export function Sessions() {
   const { track, addSession } = useTracker();
   const { sessions } = track;
   const t = useTranslations();
+  const sessionDialogRef = useRef<HTMLDivElement>(null);
   const deleteSession = useServerAction(deleteSessionAction, {
     onSuccess() {
       toast('Session deleted succesfully');
@@ -36,6 +37,26 @@ export function Sessions() {
   >>(null);
 
   useEffect(() => {
+    function clickoutside(event: MouseEvent) {
+      if (!sessionDialogRef.current) {
+        return;
+      }
+
+      if (
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        !sessionDialogRef.current.contains(event?.target) &&
+        activeSession !== null
+      ) {
+        setActiveSession(null);
+      }
+    }
+
+    document.addEventListener('click', clickoutside);
+    return () => document.removeEventListener('click', clickoutside);
+  }, [activeSession]);
+
+  useEffect(() => {
     function keydown(event: KeyboardEvent) {
       if (event.key === 'Escape') {
         setActiveSession(null);
@@ -48,11 +69,11 @@ export function Sessions() {
 
   if (sessions.length === 0) {
     return (
-      <section className="relative flex w-full items-center justify-center overflow-hidden rounded-lg border-4 border-border bg-secondary p-8 shadow-lg">
+      <Section className="m-2 flex w-full items-center justify-center rounded-lg border-4 border-border bg-secondary p-8">
         <p className="text-xs font-bold capitalize opacity-65">
           There are no sessions for this track
         </p>
-      </section>
+      </Section>
     );
   }
 
@@ -92,6 +113,7 @@ export function Sessions() {
         <AnimatePresence>
           {activeSession && (
             <SessionDialog
+              ref={sessionDialogRef}
               session={activeSession}
               onAddContent={handleAddContent}
             />
@@ -99,26 +121,25 @@ export function Sessions() {
         </AnimatePresence>,
         document.documentElement.querySelector('body')!,
       )}
-      <SectionHeader
-        description={t('track.sessions.description')}
-        title={t('track.sessions.title')}
-        icon={<CalendarMicroIcon />}
-      />
-      <MotionList className="flex flex-col gap-1">
-        <AnimatePresence mode="popLayout">
-          {sessions.map((session) => (
-            <SessionItem
-              onDelete={() => handleDeleteSession(session.id)}
-              onSelect={() => {
-                console.log(session);
-                setActiveSession(session);
-              }}
-              session={session}
-              key={session.id}
-            />
-          ))}
-        </AnimatePresence>
-      </MotionList>
+      <Section>
+        <SectionHeader
+          description={t('track.sessions.description')}
+          title={t('track.sessions.title')}
+          icon={<CalendarMicroIcon />}
+        />
+        <MotionList className="flex flex-col gap-1">
+          <AnimatePresence mode="popLayout">
+            {sessions.map((session) => (
+              <SessionItem
+                onDelete={() => handleDeleteSession(session.id)}
+                onSelect={() => setActiveSession(session)}
+                session={session}
+                key={session.id}
+              />
+            ))}
+          </AnimatePresence>
+        </MotionList>
+      </Section>
     </>
   );
 }
