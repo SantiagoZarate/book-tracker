@@ -3,6 +3,7 @@
 import { signOut, useSession } from 'next-auth/react';
 import { SignOutMicroIcon } from '../../icons/SignOutMicroIcon';
 import { IconButton } from '../../ui/button';
+import { ThemeSwitcher } from './ThemeSwitcher';
 
 export function SidebarFooter() {
   const { data } = useSession();
@@ -13,6 +14,7 @@ export function SidebarFooter() {
 
   return (
     <footer className="hidden p-1 sm:block">
+      <ThemeSwitcher />
       <p className="text-xs">{data.user?.name}</p>
       <p className="text-xs">{data.user?.role}</p>
       <IconButton

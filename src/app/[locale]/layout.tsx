@@ -5,6 +5,7 @@ import localFont from 'next/font/local';
 import { notFound } from 'next/navigation';
 import { Toaster } from 'sonner';
 import { routing } from '../i18n/routing';
+import { ThemeProvider } from '../provider/theme-provider';
 import '../styles/index.css';
 
 const geistSans = localFont({
@@ -42,13 +43,20 @@ export default async function RootLayout({
   const messages = await getMessages({ locale });
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} bg-background antialiased`}
       >
-        <NextIntlClientProvider messages={messages}>
-          {children}
-        </NextIntlClientProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <NextIntlClientProvider messages={messages}>
+            {children}
+          </NextIntlClientProvider>
+        </ThemeProvider>
         <Toaster />
       </body>
     </html>
