@@ -16,6 +16,7 @@ export const bookSchema = sqliteTable('book', {
   title: text('title').notNull(),
   author: text('author').notNull(),
   totalPages: integer('total_pages').notNull().default(1),
+  cover: text('cover'),
 });
 
 export const bookRelations = relations(bookSchema, ({ many }) => ({

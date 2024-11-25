@@ -43,6 +43,13 @@
       "when": 1732223516852,
       "tag": "0005_serious_vulture",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1732558427732,
+      "tag": "0006_faulty_angel",
+      "breakpoints": true
     }
   ]
 }
