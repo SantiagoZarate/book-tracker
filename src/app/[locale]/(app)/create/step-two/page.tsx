@@ -1,3 +1,5 @@
+'use client';
+
 import { FileUploader } from '@/app/components/ui/file-uploader';
 import { UploadedFilesCard } from '@/app/components/ui/file-uploader/uploaded-file-card';
 import { useUploadFile } from '@/app/hooks/use-upload-file';

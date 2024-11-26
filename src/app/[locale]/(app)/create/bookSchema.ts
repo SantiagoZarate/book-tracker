@@ -18,7 +18,7 @@ const IMAGE_SCHEMA = z
   })
   .refine((file) => file.size < MAX_SIZE);
 
-export const createBookSchema = z.object({
+export const firstStepSchema = z.object({
   title: z
     .string()
     .min(1, { message: 'Title too short' })
@@ -40,7 +40,19 @@ export const createBookSchema = z.object({
       }),
     )
     .min(1, 'The book must at least have one genre'),
+});
+
+export type FirstStepSchema = z.infer<typeof firstStepSchema>;
+
+export const secondStepSchema = z.object({
   cover: IMAGE_SCHEMA.optional(),
+});
+
+export type SecondStepSchema = z.infer<typeof secondStepSchema>;
+
+export const createBookSchema = z.object({
+  ...firstStepSchema.shape,
+  ...secondStepSchema.shape,
 });
 
 export type CreateBookSchema = z.infer<typeof createBookSchema>;

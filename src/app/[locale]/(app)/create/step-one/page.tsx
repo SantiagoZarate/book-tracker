@@ -1,8 +1,8 @@
 import { booksService } from '@/services/book/book.service';
-import { CreateForm } from './CreateForm';
+import { StepOne } from './StepOne';
 
 export default async function CreateBookPage() {
   const genres = await booksService.getGenres();
 
-  return <CreateForm genres={genres} />;
+  return <StepOne genres={genres} />;
 }

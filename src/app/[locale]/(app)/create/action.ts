@@ -2,6 +2,7 @@
 
 import { booksService } from '@/services/book/book.service';
 import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 import { createServerAction, ZSAError } from 'zsa';
 import { createBookSchema } from './bookSchema';
 
@@ -14,6 +15,7 @@ export const createBookAction = createServerAction()
         title: input.title,
         totalPages: input.pages,
         genres: input.genres.map((g) => g.value),
+        cover: '',
       });
     } catch (error) {
       if (error instanceof Error) {
@@ -21,4 +23,5 @@ export const createBookAction = createServerAction()
       }
     }
     revalidatePath('/add');
+    redirect('/add');
   });
