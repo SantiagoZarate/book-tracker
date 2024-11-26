@@ -20,7 +20,7 @@ export default async function Page({ searchParams }: Props) {
       <Search />
       <p className="text-center text-xs">
         {t('add.title')}
-        <Link href="/create" className="font-bold hover:underline">
+        <Link href="/create/step-one" className="font-bold hover:underline">
           {t('add.description')}
         </Link>
       </p>
