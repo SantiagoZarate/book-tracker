@@ -4,7 +4,7 @@ import { PropsWithChildren } from 'react';
 
 export default function LandingLayout({ children }: PropsWithChildren) {
   return (
-    <section className="relative grid min-h-dvh grid-rows-[1fr_auto]">
+    <section className="relative grid min-h-dvh grid-rows-[1fr_auto] pt-10">
       <Header />
       <section>{children}</section>
       <Footer />

@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { Sidebar } from '../../components/common/sidebar/Sidebar';
-import { SessionWrapper } from '../../provider/sessionWrapper';
 import '../../styles/index.css';
 
 export const metadata: Metadata = {
@@ -14,7 +13,7 @@ export default function AppLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <SessionWrapper>
+    <>
       {/* BACKGROUND COLOR */}
       <div className="fixed inset-0 grid grid-cols-2">
         <div className="bg-secondary" />
@@ -23,6 +22,6 @@ export default function AppLayout({
         <Sidebar />
         <main className="bg-background pt-16">{children}</main>
       </section>
-    </SessionWrapper>
+    </>
   );
 }

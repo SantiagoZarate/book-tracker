@@ -1,15 +1,17 @@
-import Link from 'next/link';
+import Image from 'next/image';
+import { HeaderNav } from './header-nav';
 
 export function Header() {
   return (
     <header className="fixed top-0 w-full border-b border-border px-4">
-      <section className="mx-auto flex max-w-screen-xl items-center justify-between">
-        <section>
-          <h2>Book tracker</h2>
+      <section className="mx-auto flex max-w-screen-lg items-center justify-between py-2">
+        <section className="flex gap-4">
+          <div className="relative size-6">
+            <Image src="/svg/book-tracker.svg" alt="book tracker logo" fill />
+          </div>
+          <h2 className="font-semibold">Book tracker</h2>
         </section>
-        <nav>
-          <Link href={'/signin'}>Start</Link>
-        </nav>
+        <HeaderNav />
       </section>
     </header>
   );

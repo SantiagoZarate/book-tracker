@@ -5,6 +5,7 @@ import localFont from 'next/font/local';
 import { notFound } from 'next/navigation';
 import { Toaster } from 'sonner';
 import { routing } from '../i18n/routing';
+import { SessionWrapper } from '../provider/sessionWrapper';
 import { ThemeProvider } from '../provider/theme-provider';
 import '../styles/index.css';
 
@@ -54,7 +55,7 @@ export default async function RootLayout({
           disableTransitionOnChange
         >
           <NextIntlClientProvider messages={messages}>
-            {children}
+            <SessionWrapper>{children}</SessionWrapper>
           </NextIntlClientProvider>
         </ThemeProvider>
         <Toaster />
