@@ -65,7 +65,7 @@ export function MiniTrack({ order }: Props) {
             duration: 2,
             type: 'spring',
           }}
-          className="absolute inset-0 bg-green-500"
+          className="absolute inset-0 bg-blue-500"
         />
       </section>
     </motion.li>
