@@ -5,7 +5,7 @@ import { HeroTracks } from './hero-tracks';
 export function HeroSection() {
   return (
     <section className="grid grid-cols-2 place-content-center gap-4 py-20">
-      <section className="flex flex-col gap-4">
+      <section className="flex flex-col justify-center gap-4">
         <h1 className="text-4xl font-bold">
           Your Reading, Your Story, Your Progress
         </h1>
