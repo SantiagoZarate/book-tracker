@@ -1,5 +1,6 @@
 import { FeatureCard } from './feature-card';
 import { StoreSession } from './store-session';
+import { TrackMultipleBooks } from './track-multiple-books';
 
 export function FeaturesSection() {
   return (
@@ -12,11 +13,10 @@ export function FeaturesSection() {
         <StoreSession />
       </FeatureCard>
       <FeatureCard
-        title="Store sessions"
-        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Id fuga
-            magnam enim veniam explicabo, dicta minus"
+        title="Track Multiple books"
+        description="Easily monitor your reading journey for each book in one place."
       >
-        <StoreSession />
+        <TrackMultipleBooks />
       </FeatureCard>
       <FeatureCard
         title="Store sessions"

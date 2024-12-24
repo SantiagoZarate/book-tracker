@@ -37,7 +37,7 @@ export function StoreSession() {
   const isInView = useInView(container);
 
   return (
-    <>
+    <div className="flex items-center justify-center py-6">
       <div className="flex size-12 items-center justify-center rounded-md bg-input text-black/50">
         <BookDrawIcon />
       </div>
@@ -75,6 +75,6 @@ export function StoreSession() {
           session #3
         </motion.li>
       </ul>
-    </>
+    </div>
   );
 }
