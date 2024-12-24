@@ -1,5 +1,5 @@
 import { cva, VariantProps } from 'class-variance-authority';
-import { ComponentProps } from 'react';
+import { HTMLMotionProps, motion } from 'framer-motion';
 
 const progressBarStyle = cva('h-full absolute left-0 top-0 rounded-md', {
   variants: {
@@ -13,7 +13,7 @@ const progressBarStyle = cva('h-full absolute left-0 top-0 rounded-md', {
   },
 });
 
-type Props = ComponentProps<'div'> &
+type Props = HTMLMotionProps<'div'> &
   VariantProps<typeof progressBarStyle> & {
     percentaje: string;
   };
@@ -25,9 +25,18 @@ export function ProgressBar({
   ...args
 }: Props) {
   return (
-    <div
+    <motion.div
       className={progressBarStyle({ className, variant })}
-      style={{ width: `${percentaje}%` }}
+      animate={{
+        width: `${percentaje}%`,
+      }}
+      initial={{
+        width: 0,
+      }}
+      transition={{
+        duration: 2,
+        type: 'spring',
+      }}
       {...args}
     />
   );
