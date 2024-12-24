@@ -1,5 +1,5 @@
+import { arrowLineVariants } from '@/app/components/landing/features/store-session';
 import { AnimationProps, motion } from 'framer-motion';
-import { arrowLineVariants } from './page';
 
 export const topLineTransition: AnimationProps['transition'] = {
   duration: 2,
@@ -58,7 +58,7 @@ export function TopLine() {
           transition={topLineTransition}
         >
           <stop offset={0} stopColor="#1d1d20" stopOpacity={0} />
-          <stop offset={0.5} stopColor="#1d1d20" stopOpacity={1} />
+          <stop offset={0.5} stopColor="#3b82f6 " stopOpacity={1} />
           <stop offset={1} stopColor="#292929" stopOpacity={0} />
         </motion.linearGradient>
       </defs>
@@ -100,7 +100,7 @@ export function MidLine() {
           transition={midLineTransition}
         >
           <stop offset="0" stopColor="#1d1d20" stopOpacity="0" />
-          <stop offset="0.5" stopColor="#1d1d20" stopOpacity="1" />
+          <stop offset="0.5" stopColor="#3b82f6 " stopOpacity="1" />
           <stop offset="1" stopColor="#292929" stopOpacity="0" />
         </motion.linearGradient>
       </defs>
@@ -147,7 +147,7 @@ export function DownLine({ isInView }: { isInView: boolean }) {
           transition={downLineTransition}
         >
           <stop offset="0" stopColor="#1d1d20" stopOpacity="0" />
-          <stop offset="0.5" stopColor="#1d1d20" stopOpacity="0.7" />
+          <stop offset="0.5" stopColor="#3b82f6" stopOpacity="0.7" />
           <stop offset="1" stopColor="#292929" stopOpacity="0" />
         </motion.linearGradient>
       </defs>

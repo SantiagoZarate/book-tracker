@@ -1,3 +1,4 @@
+import { DiscoverBooks } from './discover-books';
 import { FeatureCard } from './feature-card';
 import { StoreSession } from './store-session';
 import { TrackMultipleBooks } from './track-multiple-books';
@@ -7,8 +8,7 @@ export function FeaturesSection() {
     <section className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,17em),1fr))] gap-4">
       <FeatureCard
         title="Store sessions"
-        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Id fuga
-            magnam enim veniam explicabo, dicta minus"
+        description="Track your reading time, pages covered, and progress for every book, ensuring you stay organized and motivated."
       >
         <StoreSession />
       </FeatureCard>
@@ -19,11 +19,10 @@ export function FeaturesSection() {
         <TrackMultipleBooks />
       </FeatureCard>
       <FeatureCard
-        title="Store sessions"
-        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Id fuga
-            magnam enim veniam explicabo, dicta minus"
+        title="Discover new books"
+        description="Find your next great read and expand your literary horizons effortlessly."
       >
-        <StoreSession />
+        <DiscoverBooks />
       </FeatureCard>
     </section>
   );
