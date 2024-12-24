@@ -1,3 +1,5 @@
+'use client';
+
 import { SessionDTO } from '@/shared/dtos/sessionDTO';
 import { formatDistance } from 'date-fns';
 import { motion } from 'framer-motion';

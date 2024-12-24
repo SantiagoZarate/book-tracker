@@ -1,3 +1,5 @@
+'use client';
+
 import { opacity } from '@/app/lib/motion-animations';
 import { SessionDTO } from '@/shared/dtos/sessionDTO';
 import { formatDistance } from 'date-fns';

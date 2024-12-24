@@ -1,8 +1,11 @@
+'use client';
+
 import { opacity } from '@/app/lib/motion-animations';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { AddMicroIcon } from '../icons/AddMicroIcon';
 import { MotionLoaderButton } from '../motion/MotionLoaderButton';
 import { Form, FormControl, FormField, FormItem, FormLabel } from '../ui/form';
 import { Input } from '../ui/input';
@@ -53,7 +56,11 @@ export function SessionContentForm({
             </FormItem>
           )}
         />
-        <MotionLoaderButton className="w-fit" isPending={false}>
+        <MotionLoaderButton
+          icon={<AddMicroIcon />}
+          className="w-fit"
+          isPending={false}
+        >
           save
         </MotionLoaderButton>
       </Form>

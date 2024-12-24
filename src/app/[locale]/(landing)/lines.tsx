@@ -1,3 +1,5 @@
+'use client';
+
 import { arrowLineVariants } from '@/app/components/landing/features/store-session';
 import { AnimationProps, motion } from 'framer-motion';
 

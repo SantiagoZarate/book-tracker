@@ -7,7 +7,7 @@ export function DiscoverBooks() {
       <span className="book-icon">
         <BookDrawIcon />
       </span>
-      <ul className="discover-books-list grid h-full grid-cols-2 gap-1 [mask-image:radial-gradient(circle_at_0%_50%,black,transparent)]">
+      <ul className="discover-books-list grid h-full grid-cols-2 gap-1 [mask-image:radial-gradient(circle_at_0%_50%,black,transparent_80%)]">
         {Array(6)
           .fill(1)
           .map((_, index) => (
