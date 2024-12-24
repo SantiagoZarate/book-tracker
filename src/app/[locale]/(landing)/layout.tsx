@@ -5,7 +5,7 @@ import './layout.css';
 
 export default function LandingLayout({ children }: PropsWithChildren) {
   return (
-    <section className="landing-layout relative grid min-h-dvh grid-rows-[1fr_auto] pt-10">
+    <section className="landing-layout relative grid min-h-dvh grid-rows-[1fr_auto] gap-6 px-6 pt-10">
       <Header />
       <section>{children}</section>
       <Footer />

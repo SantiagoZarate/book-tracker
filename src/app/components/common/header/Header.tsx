@@ -3,7 +3,7 @@ import { HeaderNav } from './header-nav';
 
 export function Header() {
   return (
-    <header className="fixed top-0 w-full border-b border-border px-4">
+    <header className="fixed top-0 z-50 w-full border-b border-border px-4 backdrop-blur-md">
       <section className="mx-auto flex max-w-screen-lg items-center justify-between py-2">
         <section className="flex gap-4">
           <div className="relative size-6">

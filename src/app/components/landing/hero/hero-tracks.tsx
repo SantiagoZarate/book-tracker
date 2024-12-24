@@ -1,3 +1,5 @@
+'use client';
+
 import { BookTrackItem } from '@/app/[locale]/(app)/home/BookTrackItem';
 import { MotionList } from '../../motion/MotionList';
 import { MotionListItem } from '../../motion/MotionListItem';
@@ -16,8 +18,8 @@ export function HeroTracks() {
           <BookTrackItem track={b} />
         </MotionListItem>
       ))}
-      <div className="absolute inset-0 z-0 m-auto aspect-square w-[50%] rounded-full bg-green-600 opacity-80 blur-3xl"></div>
-      <div className="absolute inset-0 z-0 mx-auto mt-auto aspect-square w-[20%] translate-x-20 rounded-full bg-green-100 opacity-80 blur-3xl"></div>
+      <div className="absolute inset-0 z-0 m-auto aspect-square w-[50%] rounded-full bg-blue-600 opacity-80 blur-3xl"></div>
+      <div className="absolute inset-0 z-0 mx-auto mt-auto aspect-square w-[20%] translate-x-20 rounded-full bg-blue-100 opacity-80 blur-3xl"></div>
     </MotionList>
   );
 }
