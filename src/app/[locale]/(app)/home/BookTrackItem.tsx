@@ -7,7 +7,6 @@ import {
   TooltipTrigger,
 } from '@/app/components/ui/tooltip';
 import { TrackBookPagesDTO } from '@/shared/dtos/trackDTO';
-import Link from 'next/link';
 
 interface Props {
   track: TrackBookPagesDTO;
@@ -25,11 +24,8 @@ export function BookTrackItem({ track }: Props) {
     <TooltipProvider delayDuration={0}>
       <Tooltip>
         <TooltipTrigger className="w-full">
-          <Link
-            href={'/' + track.id}
-            className={`flex w-full flex-col gap-1 rounded-md p-2 transition hover:bg-secondary ${
-              track.isCompleted && 'bg-green-100'
-            }`}
+          <section
+            className={`flex w-full flex-col gap-1 rounded-md p-2 group-hover:bg-secondary ${track.isCompleted && 'bg-green-100'}`}
           >
             <header className="flex items-center justify-between">
               <p className="text-sm font-bold">{track.book.title}</p>
@@ -40,7 +36,7 @@ export function BookTrackItem({ track }: Props) {
             <TrackBar>
               <ProgressBar percentaje={completedPercentage} />
             </TrackBar>
-          </Link>
+          </section>
         </TooltipTrigger>
         <TooltipContent>
           <p>{pagesLeft} pages left</p>

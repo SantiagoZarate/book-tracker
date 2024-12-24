@@ -5,6 +5,7 @@ import { EmptyTracks } from '@/app/components/track/EmptyTracks';
 import { Section, SectionHeader } from '@/app/components/ui/section';
 import { trackService } from '@/services/track/track.service';
 import { getTranslations } from 'next-intl/server';
+import Link from 'next/link';
 import { BookTrackItem } from './BookTrackItem';
 
 export default async function page() {
@@ -22,9 +23,15 @@ export default async function page() {
       {tracks.length ? (
         <MotionList className="flex flex-col divide-y">
           {tracks.map((track) => (
-            <MotionListItem key={track.id} className="p-1">
-              <BookTrackItem track={track} />
-            </MotionListItem>
+            <Link
+              className="group p-1 transition hover:cursor-pointer"
+              href={'/' + track.id}
+              key={track.id}
+            >
+              <MotionListItem>
+                <BookTrackItem track={track} />
+              </MotionListItem>
+            </Link>
           ))}
         </MotionList>
       ) : (
