@@ -9,10 +9,10 @@ export function HeroSection() {
         <h1 className="text-4xl font-bold">
           Your Reading, Your Story, Your Progress
         </h1>
-        <p className="text-secondary">
+        <p className="text-primary/70">
           Monitor your reading sessions and watch your progress grow.
         </p>
-        <Link href={'/signin'}>
+        <Link href={'/signin'} className="w-fit">
           <Button>Start Tracking Now!</Button>
         </Link>
       </section>

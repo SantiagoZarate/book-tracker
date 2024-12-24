@@ -49,7 +49,7 @@ export function MiniTrack({ order }: Props) {
         duration: 1,
       }}
       data-completed={Number(percentage) >= 90}
-      className="flex w-[40%] items-center gap-1 rounded-md border border-muted bg-background px-2 py-[2px] transition-colors data-[completed='true']:bg-green-800"
+      className="flex w-[40%] items-center gap-1 rounded-md border border-muted bg-background px-2 py-[2px] shadow-lg transition-colors data-[completed='true']:bg-green-800"
     >
       <p className="text-[10px] text-border">{percentage}%</p>
       <section className="relative h-[2px] w-full overflow-hidden rounded-full">
