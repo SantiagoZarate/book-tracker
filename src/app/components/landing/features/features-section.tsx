@@ -4,7 +4,7 @@ import { TrackMultipleBooks } from './track-multiple-books';
 
 export function FeaturesSection() {
   return (
-    <section className="grid grid-cols-3 gap-4">
+    <section className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,17em),1fr))] gap-4">
       <FeatureCard
         title="Store sessions"
         description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Id fuga
