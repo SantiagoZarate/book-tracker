@@ -37,7 +37,7 @@ export default function LandingPage() {
   const isInView = useInView(container);
 
   return (
-    <main className="relative mx-auto flex h-full max-w-screen-lg flex-col gap-6">
+    <main className="relative mx-auto grid h-full max-w-screen-lg grid-rows-[1fr_auto] flex-col gap-6">
       <HeroSection />
       <section className="grid grid-cols-3">
         <section className="flex flex-col gap-1 rounded-md bg-muted p-2 shadow-xl">

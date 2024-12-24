@@ -1,51 +1,23 @@
 import { BookTrackItem } from '@/app/[locale]/(app)/home/BookTrackItem';
-import { TrackBookPagesDTO } from '@/shared/dtos/trackDTO';
-
-const books: TrackBookPagesDTO[] = [
-  {
-    id: '1a2b3c4d',
-    isCompleted: false,
-    startedAt: '2024-09-01T10:30:00Z',
-    book: {
-      title: 'The Great Gatsby',
-      id: 'book-123',
-      totalPages: 180,
-      author: 'F. Scott Fitzgerald',
-    },
-    pagesAlreadyRead: 45,
-  },
-  {
-    id: '5e6f7g8h',
-    isCompleted: false,
-    startedAt: '2024-08-20T14:15:00Z',
-    book: {
-      title: '1984',
-      id: 'book-456',
-      totalPages: 328,
-      author: 'George Orwell',
-    },
-    pagesAlreadyRead: 150,
-  },
-  {
-    id: '9i0j1k2l',
-    isCompleted: false,
-    startedAt: '2024-07-15T08:00:00Z',
-    book: {
-      title: 'To Kill a Mockingbird',
-      id: 'book-789',
-      totalPages: 281,
-      author: 'Harper Lee',
-    },
-    pagesAlreadyRead: 222,
-  },
-];
+import { MotionList } from '../../motion/MotionList';
+import { MotionListItem } from '../../motion/MotionListItem';
+import { books } from './books';
+import './floating-tracks.css';
 
 export function HeroTracks() {
   return (
-    <section className="rounded-lg border border-border">
+    <MotionList className="book-tracks relative flex flex-col gap-4 p-4">
       {books.map((b) => (
-        <BookTrackItem key={b.id} track={b} />
+        <MotionListItem
+          layout
+          className="rounded-lg border border-border bg-primary/5"
+          key={b.id}
+        >
+          <BookTrackItem track={b} />
+        </MotionListItem>
       ))}
-    </section>
+      <div className="absolute inset-0 z-0 m-auto aspect-square w-[50%] rounded-full bg-green-600 opacity-80 blur-3xl"></div>
+      <div className="absolute inset-0 z-0 mx-auto mt-auto aspect-square w-[20%] translate-x-20 rounded-full bg-green-100 opacity-80 blur-3xl"></div>
+    </MotionList>
   );
 }
